@@ -104,6 +104,13 @@ button:active{transform:scale(.985)}
 @media(max-width:420px){.today-actions{grid-template-columns:1fr}}
 @media(min-width:650px){.dashboard{grid-template-columns:repeat(4,1fr)}}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}.wrap{padding:0 14px}}
+
+html{-webkit-text-size-adjust:100%;touch-action:manipulation}
+button,select,input,textarea{font-size:16px!important}
+button,.tab,.day,.audio,.today-select{touch-action:manipulation}
+*{-webkit-tap-highlight-color:transparent}
+.today-actions{grid-template-columns:1fr!important}
+
 </style>
 <style id="final-historical-theme">
 :root{
@@ -326,7 +333,11 @@ button,.tab,.day,.audio,.today-select{touch-action:manipulation}
     </div>
     <div class="badge" id="todayBadge">TODAY</div>
   </div>
-  <select id="todayDaySelect" class="today-select" aria-label="今日学習するDay"></select>
+  <select id="todayDaySelect" class="today-select" aria-label="今日学習するDay">
+      <option value="1">Day 1｜日常会話｜あいさつと基本返答</option>
+      <option value="2">Day 2｜日常会話｜自己紹介と人</option>
+      <option value="3">Day 3｜日常会話｜疑問詞と日常会話</option>
+    </select>
   <div class="day-preview" id="todayDayPreview"></div>
   <div class="day-list-hint">Dayを選ぶと、タイトルと代表フレーズが表示されます。</div>
   <div class="today-actions">
@@ -376,6 +387,10 @@ let activeStartedAt=Date.now();
 let lastActivityAt=Date.now();
 
 state.stats=state.stats||{totalSeconds:0,lastActive:"",streak:0,testHistory:[]};
+state.unlocked=Math.max(3,Number(state.unlocked)||3);
+state.selected=Math.max(1,Math.min(Number(state.selected)||1,state.unlocked));
+state.dayDone=(state.dayDone&&typeof state.dayDone==="object")?state.dayDone:{};
+state.blockDone=(state.blockDone&&typeof state.blockDone==="object")?state.blockDone:{};
 state.stats.totalSeconds=Number(state.stats.totalSeconds||0);
 state.stats.testHistory=Array.isArray(state.stats.testHistory)?state.stats.testHistory:[];
 state.stats.streak=Number(state.stats.streak||0);
@@ -454,23 +469,44 @@ function renderDayPreview(n){
 function renderTodaySelector(){
   const select=$("todayDaySelect");
   if(!select)return;
-  const currentValue=Number(select.value)||state.selected||1;
-  select.innerHTML="";
-  for(let n=1;n<=30;n++){
-    const opt=document.createElement("option");
-    opt.value=String(n);
-    const locked=n>state.unlocked;
-    opt.disabled=locked;
-    const done=!!state.dayDone[n];
-    const cat=getDayCategory(n);
-    opt.textContent=`Day ${n}｜${cat.label}｜${DAYS[n-1].title}${locked?"（未解放）":done?"（学習済み）":""}`;
-    select.appendChild(opt);
+
+  try{
+    const unlocked=Math.max(3,Number(state.unlocked)||3);
+    const selected=Math.max(1,Math.min(Number(state.selected)||1,unlocked));
+    select.innerHTML="";
+
+    for(let n=1;n<=30;n++){
+      const day=DAYS[n-1];
+      if(!day)continue;
+
+      const opt=document.createElement("option");
+      opt.value=String(n);
+
+      const locked=n>unlocked;
+      const done=!!state.dayDone[n];
+      const cat=getDayCategory(n);
+
+      opt.disabled=locked;
+      opt.textContent=`Day ${n}｜${cat.label}｜${day.title}${locked?"（未解放）":done?"（学習済み）":""}`;
+      select.appendChild(opt);
+    }
+
+    select.value=String(selected);
+    if(!select.value)select.value="1";
+
+    const next=getRecommendedDay()||1;
+    $("todayRecommendation").textContent=`次に進む：Day ${next}「${DAYS[next-1].title}」`;
+    $("todayBadge").textContent=state.dayDone[next]?"復習":"SELECT";
+    renderDayPreview(Number(select.value)||1);
+  }catch(error){
+    console.error("Day selector error",error);
+    select.innerHTML=`
+      <option value="1">Day 1｜日常会話｜あいさつと基本返答</option>
+      <option value="2">Day 2｜日常会話｜自己紹介と人</option>
+      <option value="3">Day 3｜日常会話｜疑問詞と日常会話</option>`;
+    select.value="1";
+    renderDayPreview(1);
   }
-  const recommended=getRecommendedDay();
-  select.value=String(currentValue<=state.unlocked?currentValue:recommended);
-  $("todayRecommendation").textContent=`次に進むDay：Day ${recommended}「${DAYS[recommended-1].title}」`;
-  $("todayBadge").textContent=state.dayDone[recommended]?"復習":"TODAY";
-  renderDayPreview(Number(select.value));
 }
 function openSelectedDay(dayNumber){
   const n=Number(dayNumber);
@@ -732,6 +768,13 @@ function finishQuiz(){
 
 document.addEventListener("click",event=>{
   markActivity();
+
+  const startButton=event.target.closest("#startTodayBtn");
+  if(startButton){
+    const select=$("todayDaySelect");
+    openSelectedDay(select && select.value ? select.value : 1);
+    return;
+  }
   const dayButton=event.target.closest("[data-day]");
   if(dayButton){
     state.selected=Number(dayButton.dataset.day);
@@ -781,12 +824,17 @@ document.addEventListener("click",event=>{
   }
 });
 
+document.addEventListener("change",event=>{
+  if(event.target && event.target.id==="todayDaySelect"){
+    const n=Number(event.target.value)||1;
+    state.selected=n;
+    save();
+    renderDayPreview(n);
+  }
+});
+
 renderApp();
-if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch(() => {});
-  });
-}
+
 </script>
 </body>
 </html>
