@@ -272,6 +272,60 @@ button,.tab,.day,.audio,.today-select{touch-action:manipulation}
   display:none !important;
 }
 
+
+.memory-song{
+  margin-top:18px;
+  padding:16px;
+  border:2px solid #a47b36;
+  border-radius:7px;
+  background:linear-gradient(145deg,#2d2821,#191612);
+  color:#fff7e7;
+}
+.memory-song h3{
+  margin:0 0 8px;
+  color:#e3b858;
+  font-size:19px;
+}
+.memory-song-copy{
+  font-size:13px;
+  line-height:1.65;
+  color:#e3d7c3;
+}
+.song-lyrics{
+  margin-top:12px;
+  padding:14px;
+  border:1px solid rgba(228,184,88,.55);
+  background:rgba(255,255,255,.06);
+  font-size:18px;
+  font-weight:800;
+  line-height:1.85;
+  letter-spacing:.02em;
+}
+.song-reading{
+  margin-top:8px;
+  color:#f4ca70;
+  font-size:14px;
+  line-height:1.7;
+}
+.song-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:12px;
+}
+.song-actions button{
+  min-height:50px;
+}
+.song-tip{
+  margin-top:10px;
+  font-size:13px;
+  line-height:1.65;
+  color:#e3d7c3;
+}
+@media(max-width:520px){
+  .song-actions{grid-template-columns:1fr}
+}
+
 </style>
 <style id="final-historical-theme">
 :root{
@@ -833,11 +887,35 @@ const SPECIAL_LESSONS={
       {
         title:"1. 平音・濃音・激音の3種類",
         html:`<table class="special-table">
-          <tr><th>種類</th><th>例</th><th>発音の特徴</th></tr>
-          <tr><td>平音</td><td>ㄱ ㄷ ㅂ ㅈ</td><td>自然な強さ。語頭では軽く、語中では濁って聞こえることがある</td></tr>
-          <tr><td>濃音</td><td>ㄲ ㄸ ㅃ ㅉ ㅆ</td><td>息を出さず、喉を締めて短く強く出す</td></tr>
-          <tr><td>激音</td><td>ㅋ ㅌ ㅍ ㅊ</td><td>息を強く前へ出す</td></tr>
-        </table>`
+          <tr><th>種類</th><th>文字</th><th>カタカナ目安</th><th>発音の特徴</th></tr>
+          <tr><td>平音</td><td>ㄱ</td><td>カ／ガ</td><td>語頭は軽い「カ」、語中は「ガ」に近く聞こえることがあります</td></tr>
+          <tr><td>平音</td><td>ㄷ</td><td>タ／ダ</td><td>語頭は軽い「タ」、語中は「ダ」に近く聞こえることがあります</td></tr>
+          <tr><td>平音</td><td>ㅂ</td><td>パ／バ</td><td>語頭は軽い「パ」、語中は「バ」に近く聞こえることがあります</td></tr>
+          <tr><td>平音</td><td>ㅈ</td><td>チャ／ジャ</td><td>語頭は軽い「チャ」、語中は「ジャ」に近く聞こえることがあります</td></tr>
+          <tr><td>平音</td><td>ㅅ</td><td>サ／シ</td><td>ㅣ系の母音の前では「シ」に近くなります</td></tr>
+          <tr><td>平音</td><td>ㄴ</td><td>ナ</td><td>日本語のナ行に近い音です</td></tr>
+          <tr><td>平音</td><td>ㅁ</td><td>マ</td><td>日本語のマ行に近い音です</td></tr>
+          <tr><td>平音</td><td>ㅇ</td><td>無音／ン</td><td>語頭では読まず、パッチムでは「ン・ング」に近い音です</td></tr>
+          <tr><td>平音</td><td>ㄹ</td><td>ラ／ル</td><td>語中は軽いラ行、語末では舌を上につけて止めます</td></tr>
+          <tr><td>平音</td><td>ㅎ</td><td>ハ</td><td>息を吐くハ行に近い音です</td></tr>
+          <tr><td>濃音</td><td>ㄲ</td><td>ッカ</td><td>小さい「ッ」を入れるように短く強く発音します</td></tr>
+          <tr><td>濃音</td><td>ㄸ</td><td>ッタ</td><td>息を出しすぎず、詰めて発音します</td></tr>
+          <tr><td>濃音</td><td>ㅃ</td><td>ッパ</td><td>唇を閉じ、短く強く発音します</td></tr>
+          <tr><td>濃音</td><td>ㅉ</td><td>ッチャ</td><td>短く詰めて強く発音します</td></tr>
+          <tr><td>濃音</td><td>ㅆ</td><td>ッサ</td><td>鋭く細い息で発音します</td></tr>
+          <tr><td>激音</td><td>ㅋ</td><td>カッ</td><td>「カ」の後に強い息を出します</td></tr>
+          <tr><td>激音</td><td>ㅌ</td><td>タッ</td><td>「タ」の後に強い息を出します</td></tr>
+          <tr><td>激音</td><td>ㅍ</td><td>パッ</td><td>唇から強い息を出します</td></tr>
+          <tr><td>激音</td><td>ㅊ</td><td>チャッ</td><td>「チャ」の後に強い息を出します</td></tr>
+        </table>
+        <p class="special-example-tip"><b>初心者向け：</b>平音＝普通、濃音＝小さい「ッ」、激音＝強い息、と覚えると分かりやすいです。</p>
+        <div class="special-example">
+          <div class="special-example-ko">가・나・다・라・마・바・사・아・자・차・카・타・파・하</div>
+          <div class="special-example-read" hidden>カ・ナ・タ／ダ・ラ・マ・パ／バ・サ・ア・チャ／ジャ・チャッ・カッ・タッ・パッ・ハ</div>
+          <div class="special-read-placeholder">音声を聞くとカタカナ目安が表示されます</div>
+          <div class="special-example-tip">同じ ㅏ（ア）を付けて、子音の違いを順番に聞き比べます。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("가 나 다 라 마 바 사 아 자 차 카 타 파 하")}">音声を聞く（読みを表示）</button>
+        </div>`
       },
       {
         title:"2. 息で聞き分ける",
@@ -857,12 +935,54 @@ const SPECIAL_LESSONS={
         </div>`
       },
       {
-        title:"3. ㄹ・ㅅ・ㅎの注意点",
+        title:"3. ABCの歌のメロディーで暗記",
+        html:`<div class="memory-song">
+          <h3>暗記歌①｜音で覚える「カナダラ」</h3>
+          <div class="memory-song-copy">ABCの歌と同じメロディーに合わせて、下の14音を歌います。文字名より先に、音の並びを体に入れる初心者向けです。</div>
+          <div class="song-lyrics">
+            가・나・다・라・마・바・사<br>
+            아・자・차・카・타・파・하
+          </div>
+          <div class="song-reading">
+            カ・ナ・タ／ダ・ラ・マ・パ／バ・サ<br>
+            ア・チャ／ジャ・チャッ・カッ・タッ・パッ・ハ
+          </div>
+          <div class="song-actions">
+            <button type="button" data-song="syllables">♪ メロディーを再生</button>
+            <button type="button" class="audio" data-speak="${encodeURIComponent("가 나 다 라 마 바 사 아 자 차 카 타 파 하")}">韓国語の音を聞く</button>
+          </div>
+          <div class="song-tip"><b>語呂：</b>「カナダラ・マバサ／アジャチャ・カタパハ」。まずは意味を考えず、7音＋7音のまとまりで3回歌います。</div>
+        </div>
+        <div class="memory-song">
+          <h3>暗記歌②｜子音の名前で覚える</h3>
+          <div class="memory-song-copy">文字を見て名前を言えるようにする練習です。メロディーに完全に詰め込まず、4つずつ区切ってリズム唱します。</div>
+          <div class="song-lyrics">
+            기역・니은・디귿・리을<br>
+            미음・비읍・시옷・이응<br>
+            지읒・치읓・키읔・티읕<br>
+            피읖・히읗
+          </div>
+          <div class="song-reading">
+            キヨク・ニウン・ティグッ・リウル<br>
+            ミウム・ピウプ・シオッ・イウン<br>
+            チウッ・チウッ・キウク・ティウッ<br>
+            ピウプ・ヒウッ
+          </div>
+          <div class="song-actions">
+            <button type="button" data-song="names">♪ リズムを再生</button>
+            <button type="button" class="audio" data-speak="${encodeURIComponent("기역 니은 디귿 리을 미음 비읍 시옷 이응 지읒 치읓 키읔 티읕 피읖 히읗")}">子音名を聞く</button>
+          </div>
+          <div class="song-tip"><b>語呂：</b>「キ・ニ・ティ・リ／ミ・ピ・シ・イ／チ・チ・キ・ティ／ピ・ヒ」と頭の1音だけでも先に覚えると、順番を思い出しやすくなります。</div>
+        </div>`
+      },
+      {
+        title:"4. ㄹ・ㅅ・ㅎの注意点",
         html:`<table class="special-table">
-          <tr><th>子音</th><th>発音アドバイス</th></tr>
-          <tr><td>ㄹ</td><td>語中は舌先を軽く1回はじく。語末では舌先を上の歯茎につけたまま止める</td></tr>
-          <tr><td>ㅅ</td><td>ㅣ・ㅑ・ㅕ・ㅛ・ㅠの前では「シ」に近くなる</td></tr>
-          <tr><td>ㅎ</td><td>単独では息の音。前後の子音を激音化させることがある</td></tr>
+          <tr><th>子音</th><th>カタカナ目安</th><th>発音アドバイス</th></tr>
+          <tr><td>ㄹ</td><td>ラ／ル</td><td>語中は軽いラ行。語末では「ル」と母音を足さず、舌を上につけて止めます</td></tr>
+          <tr><td>ㅅ</td><td>サ／シ</td><td>ㅏ・ㅓ・ㅗ・ㅜの前はサ行、ㅣ・ㅑ・ㅕ・ㅛ・ㅠの前では「シ」に近くなります</td></tr>
+          <tr><td>ㅎ</td><td>ハ</td><td>息を吐く音です。前後の子音と合わさると、カッ・タッ・パッ・チャッのように強くなることがあります</td></tr>
+          <tr><td>ㅇ</td><td>無音／ン</td><td>最初では読まず、パッチムでは「ン」または「ング」に近くなります</td></tr>
         </table>`
       }
     ]
@@ -990,6 +1110,47 @@ function renderLesson(){
       content.appendChild(row);
     });
   }
+}
+
+
+function playMemorySong(kind){
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass){
+    alert("このブラウザではメロディー再生に対応していません。");
+    return;
+  }
+
+  const ctx=new AudioContextClass();
+  const bpm=kind==="names"?132:118;
+  const beat=60/bpm;
+  const frequencies={
+    C4:261.63,D4:293.66,E4:329.63,F4:349.23,
+    G4:392.00,A4:440.00
+  };
+
+  // Familiar alphabet-song / Ah vous dirai-je maman melody.
+  const melody=[
+    ["C4",1],["C4",1],["G4",1],["G4",1],["A4",1],["A4",1],["G4",2],
+    ["F4",1],["F4",1],["E4",1],["E4",1],["D4",1],["D4",1],["C4",2]
+  ];
+
+  let cursor=ctx.currentTime+0.08;
+  melody.forEach(([note,length])=>{
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type="sine";
+    osc.frequency.value=frequencies[note];
+    gain.gain.setValueAtTime(0.0001,cursor);
+    gain.gain.exponentialRampToValueAtTime(0.18,cursor+0.025);
+    gain.gain.exponentialRampToValueAtTime(0.0001,cursor+beat*length*0.9);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(cursor);
+    osc.stop(cursor+beat*length);
+    cursor+=beat*length;
+  });
+
+  setTimeout(()=>ctx.close(),Math.ceil((cursor-ctx.currentTime+0.5)*1000));
 }
 
 function speak(text){
@@ -1167,6 +1328,12 @@ function finishQuiz(){
 
 document.addEventListener("click",event=>{
   markActivity();
+
+  const songButton=event.target.closest("[data-song]");
+  if(songButton){
+    playMemorySong(songButton.dataset.song);
+    return;
+  }
 
   const specialButton=event.target.closest("[data-special]");
   if(specialButton){
