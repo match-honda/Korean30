@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#5836c7">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>韓国ドラマ・接客・会社で役立つ 30日韓国語日常会話特訓アプリ</title>
+<title>韓国ドラマ・レストラン接客・会社で役立つ 韓国語日常会話特訓アプリ</title>
 <style>
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;touch-action:manipulation}
@@ -78,578 +78,33 @@ button:active{transform:scale(.985)}
 .day-preview-read{font-size:14px;color:#5836c7;margin-top:3px}
 .day-preview-jp{font-size:14px;color:#555;margin-top:3px}
 .day-list-hint{font-size:12px;color:#777;margin-top:7px}
-@media(max-width:380px){.hero-panel:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.11);right:-55px;top:-70px}
+@media(max-width:380px){.hero-panel{position:relative;overflow:hidden;background:linear-gradient(135deg,#5c39c8 0%,#7f61e7 55%,#9f7cf0 100%);color:#fff;border-radius:18px;padding:20px;margin:12px 0;box-shadow:0 10px 28px rgba(73,45,170,.22)}
+.hero-panel:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.11);right:-55px;top:-70px}
 .hero-panel:after{content:"";position:absolute;width:115px;height:115px;border-radius:50%;background:rgba(255,255,255,.08);left:-35px;bottom:-58px}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-size:13px;font-weight:800;opacity:.9;letter-spacing:.04em}
+.hero-title{font-size:25px;font-weight:900;line-height:1.3;margin-top:5px}
+.hero-copy{font-size:14px;line-height:1.6;margin-top:7px;opacity:.95}
+.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
+.hero-btn-main{background:#fff;color:#5433bd}
+.hero-btn-sub{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.hero-mini{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.hero-chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);padding:6px 9px;border-radius:999px;font-size:12px;font-weight:700}
 .section-label{font-size:13px;color:#6f6787;font-weight:800;letter-spacing:.04em;margin:18px 2px 6px}
 .quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .quick-card{background:#fff;border:1px solid #e5def7;border-radius:14px;padding:13px;text-align:left;min-height:92px}
 .quick-card-title{font-weight:850;font-size:15px}
 .quick-card-copy{font-size:12px;color:#777;line-height:1.45;margin-top:4px}
 .quick-icon{font-size:23px;margin-bottom:5px}
+.level-track{display:flex;align-items:center;gap:8px;margin-top:12px}
+.level-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35)}
 .level-dot.active{background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.18)}
-@media(max-width:420px){.quick-grid{grid-template-columns:1fr 1fr}}
+.level-line{height:3px;flex:1;background:rgba(255,255,255,.28);border-radius:3px}
+@media(max-width:420px){.hero-actions{grid-template-columns:1fr}.hero-title{font-size:22px}.quick-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.today-actions{grid-template-columns:1fr}}
 @media(min-width:650px){.dashboard{grid-template-columns:repeat(4,1fr)}}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}.wrap{padding:0 14px}}
-
-.focus-card:after{
-  content:"";
-  position:absolute;
-  width:140px;height:140px;border-radius:50%;
-  right:-65px;bottom:-80px;
-  background:rgba(255,255,255,.09);
-}
-.focus-eyebrow{
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.12em;
-  opacity:.78;
-}
-.focus-title{
-  font-size:24px;
-  font-weight:900;
-  line-height:1.35;
-  margin-top:6px;
-  position:relative;
-  z-index:1;
-}
-.focus-copy{
-  margin-top:7px;
-  font-size:14px;
-  line-height:1.65;
-  opacity:.92;
-  position:relative;
-  z-index:1;
-}
-.focus-actions button{width:100%}
-.section-label{
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.12em;
-  color:#766d8c;
-  margin:18px 4px 8px;
-}
-.card{
-  border:1px solid rgba(91,66,181,.08);
-  box-shadow:0 10px 28px rgba(47,35,89,.08);
-}
-.dashboard{gap:9px}
-.metric{
-  background:#fff;
-  border:1px solid #ece8f6;
-  box-shadow:none;
-  border-radius:15px;
-}
-.metric-label{font-size:12px;color:#807892;font-weight:700}
-.metric-value{font-size:27px;color:#4c2db5}
-.metric-sub{color:#8b8498}
-.progress{
-  height:8px;
-  background:#eceaf2;
-}
-.bar{
-  background:linear-gradient(90deg,#5b38cc,#8b6ce8);
-}
-.motivation{
-  margin-top:12px;
-  border-radius:15px;
-  box-shadow:none;
-}
-.today-card{
-  background:#fff;
-  border:1px solid #e9e4f5;
-  box-shadow:0 10px 26px rgba(57,42,107,.07);
-}
-.day-preview{
-  background:#faf9fd;
-  border:1px solid #ebe7f4;
-}
-.today-select{
-  border:1px solid #ddd7ec;
-}
-.day{
-  border:1px solid #e8e4ef;
-  box-shadow:none;
-  border-radius:14px;
-}
-.day.current{
-  outline:2px solid #7b5ee0;
-  box-shadow:0 7px 18px rgba(88,54,199,.12);
-}
-.tabs .tab{
-  background:#f0eef5;
-}
-.tabs .tab.active{
-  background:linear-gradient(135deg,#5734c2,#7457de);
-}
-@media(max-width:420px){
-    .focus-title{font-size:22px}
-}
-
-
-body{
-  line-height:1.65;
-}
-header h1{
-  line-height:1.35;
-  margin-bottom:10px;
-}
-header p,
-.hero-copy,
-.focus-copy{
-  line-height:1.7;
-}
-.wrap{
-  padding-bottom:34px;
-}
-.card{
-  padding:18px;
-  margin-bottom:16px;
-}
-.section-label{
-  margin-top:24px;
-  margin-bottom:10px;
-  line-height:1.4;
-}
-.metric{
-  padding:15px;
-  min-height:96px;
-}
-.metric-label{
-  line-height:1.45;
-}
-.metric-value{
-  margin-top:7px;
-  line-height:1.15;
-}
-.metric-sub{
-  margin-top:7px;
-  line-height:1.45;
-}
-.motivation-title{
-  margin-bottom:7px;
-}
-.motivation-message{
-  line-height:1.7;
-}
-.today-title{
-  line-height:1.4;
-}
-.today-recommend{
-  margin-top:8px;
-  line-height:1.5;
-}
-.today-select{
-  margin-top:14px;
-}
-.day-preview{
-  margin-top:14px;
-  padding:16px;
-}
-.day-preview-title{
-  margin-top:4px;
-  line-height:1.45;
-}
-.day-preview-phrase{
-  margin-top:13px;
-  padding:13px;
-}
-.day-preview-ko{
-  line-height:1.5;
-}
-.day-preview-read,
-.day-preview-jp{
-  margin-top:5px;
-  line-height:1.55;
-}
-.day-list-hint{
-  margin-top:9px;
-  line-height:1.55;
-}
-.today-actions{
-  margin-top:14px;
-  gap:10px;
-}
-.grid{
-  gap:12px;
-}
-.day{
-  padding:16px;
-  min-height:96px;
-}
-.day .title{
-  line-height:1.45;
-}
-.tabs{
-  gap:10px;
-  margin-bottom:14px;
-}
-.tab{
-  min-height:54px;
-  line-height:1.35;
-}
-.lesson-item{
-  padding:16px;
-  margin-bottom:12px;
-}
-.ko{
-  line-height:1.45;
-}
-.read,
-.jp,
-.grammar{
-  line-height:1.65;
-}
-.audio{
-  margin-top:12px;
-}
-button{
-  line-height:1.35;
-}
-
-
-/* Focus card spacing refinement */
-.focus-eyebrow{
-  display:block !important;
-  margin-bottom: 8px !important;
-  font-size: 12px !important;
-  letter-spacing: .10em !important;
-  line-height: 1.5 !important;
-  color: #766d8c !important;
-}
-.focus-title{
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  font-size: 22px !important;
-  line-height: 1.5 !important;
-  color:#1f1b2d !important;
-}
-.focus-copy{
-  margin-top: 12px !important;
-  margin-bottom: 0 !important;
-  font-size: 15px !important;
-  line-height: 1.8 !important;
-  color:#4c465d !important;
-}
-.focus-actions button{
-  min-height: 54px !important;
-}
-@media(max-width:420px){
-    .focus-title{
-    font-size: 20px !important;
-    line-height: 1.55 !important;
-  }
-  .focus-copy{
-    font-size: 14px !important;
-    line-height: 1.8 !important;
-  }
-}
-
-
-
-/* Historical epic / Warring States inspired theme */
-:root{
-  --ink:#171512;
-  --charcoal:#24211c;
-  --iron:#34302a;
-  --paper:#efe4cf;
-  --paper-deep:#dfceb0;
-  --bronze:#b98a3d;
-  --gold:#d3aa5a;
-  --vermilion:#8e2f24;
-  --vermilion-dark:#682019;
-  --line:#8e7653;
-  --muted:#6c6255;
-}
-
-html,body{
-  background:
-    radial-gradient(circle at 20% 0%, rgba(185,138,61,.08), transparent 24%),
-    linear-gradient(180deg,#d8d0c2 0%,#eee8dc 20%,#e7dece 100%) !important;
-  color:var(--ink) !important;
-}
-
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif !important;
-}
-
-header{
-  background:
-    linear-gradient(rgba(18,16,13,.88),rgba(28,24,19,.94)),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px) !important;
-  border-bottom:3px solid var(--bronze) !important;
-  box-shadow:0 10px 28px rgba(20,17,13,.28) !important;
-  color:#f7edd9 !important;
-}
-
-header h1{
-  color:#f7edd9 !important;
-  text-shadow:0 2px 0 #000,0 0 14px rgba(211,170,90,.18) !important;
-  letter-spacing:.02em !important;
-}
-
-header p{
-  color:#d9c6a2 !important;
-}
-
-.wrap{
-  max-width:860px !important;
-}
-
-.card,
-.today-card,
-.day-preview,
-.metric,
-.lesson-item{
-  background:
-    linear-gradient(145deg,rgba(255,250,240,.95),rgba(235,222,198,.96)) !important;
-  border:1px solid rgba(108,82,44,.32) !important;
-  box-shadow:
-    0 10px 24px rgba(42,32,20,.10),
-    inset 0 1px 0 rgba(255,255,255,.7) !important;
-}
-
-.card,
-.today-card{
-  border-radius:8px !important;
-}
-
-.section-label{
-  color:var(--charcoal) !important;
-  letter-spacing:.12em !important;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif !important;
-}
-
-.metric{
-  border-left:4px solid var(--bronze) !important;
-  border-radius:6px !important;
-}
-
-.metric-label{
-  color:#6d5b43 !important;
-}
-
-.metric-value{
-  color:var(--vermilion) !important;
-  text-shadow:0 1px 0 rgba(255,255,255,.6) !important;
-}
-
-.progress{
-  height:10px !important;
-  background:#c9b99e !important;
-  border:1px solid #9b8766 !important;
-  border-radius:2px !important;
-}
-
-.bar{
-  background:
-    linear-gradient(90deg,var(--vermilion-dark),var(--vermilion),#bd5a42) !important;
-  border-radius:1px !important;
-}
-
-.motivation{
-  background:
-    linear-gradient(135deg,#2b2721,#3c352b) !important;
-  color:#f5e7cc !important;
-  border:1px solid var(--bronze) !important;
-  border-radius:6px !important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05) !important;
-}
-
-.motivation-title{
-  color:var(--gold) !important;
-}
-
-.today-card{
-  position:relative;
-  overflow:hidden;
-}
-
-.today-card:before{
-  content:"";
-  position:absolute;
-  left:0;top:0;bottom:0;
-  width:6px;
-  background:linear-gradient(var(--vermilion),var(--vermilion-dark));
-}
-
-.today-title{
-  color:var(--ink) !important;
-}
-
-.today-recommend{
-  color:var(--vermilion) !important;
-  font-weight:800 !important;
-}
-
-.badge,
-.day-preview-category{
-  background:#2c2822 !important;
-  color:var(--gold) !important;
-  border:1px solid var(--bronze) !important;
-  border-radius:3px !important;
-}
-
-.today-select{
-  background:#f7efdf !important;
-  border:1px solid #9a8059 !important;
-  border-radius:4px !important;
-  color:var(--ink) !important;
-}
-
-.day-preview{
-  border-radius:5px !important;
-  background:
-    linear-gradient(135deg,#f3e7d1,#e6d4b5) !important;
-}
-
-.day-preview-phrase{
-  background:rgba(255,250,240,.72) !important;
-  border-left:4px solid var(--vermilion) !important;
-  border-radius:2px !important;
-}
-
-.day-preview-read{
-  color:var(--vermilion) !important;
-}
-
-button,
-.tab,
-.audio{
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif !important;
-  border-radius:4px !important;
-  border:1px solid #6f5d43 !important;
-  box-shadow:
-    0 3px 0 #3b3124,
-    inset 0 1px 0 rgba(255,255,255,.18) !important;
-  transition:transform .08s ease,box-shadow .08s ease,filter .15s ease !important;
-}
-
-button:active,
-.tab:active,
-.audio:active{
-  transform:translateY(2px) !important;
-  box-shadow:
-    0 1px 0 #3b3124,
-    inset 0 1px 0 rgba(255,255,255,.12) !important;
-}
-
-.primary,
-.tab.active{
-  background:
-    linear-gradient(180deg,#a84334 0%,#7f281f 100%) !important;
-  color:#fff7e6 !important;
-  border-color:#5f1c17 !important;
-}
-
-.tab,
-.today-actions button:not(.primary),
-button:not(.primary){
-  background:
-    linear-gradient(180deg,#efe3cd 0%,#d8c3a1 100%) !important;
-  color:#2b261f !important;
-}
-
-.audio{
-  background:
-    linear-gradient(180deg,#3a352e 0%,#25211c 100%) !important;
-  color:#f4dfb8 !important;
-  border-color:#15120f !important;
-}
-
-.day{
-  background:
-    linear-gradient(145deg,#f2e8d6,#ddc9a9) !important;
-  border:1px solid #9d835c !important;
-  border-radius:5px !important;
-  box-shadow:0 5px 12px rgba(47,35,22,.08) !important;
-}
-
-.day.current{
-  outline:2px solid var(--vermilion) !important;
-  box-shadow:0 0 0 4px rgba(142,47,36,.10),0 8px 18px rgba(51,36,20,.12) !important;
-}
-
-.day.locked{
-  filter:grayscale(.75) sepia(.15) !important;
-  opacity:.55 !important;
-}
-
-.day .day-number,
-.day strong{
-  color:var(--vermilion) !important;
-}
-
-.tabs{
-  border-bottom:1px solid #9c8664 !important;
-  padding-bottom:8px !important;
-}
-
-.ko{
-  color:#201c17 !important;
-}
-
-.read{
-  color:var(--vermilion) !important;
-}
-
-.jp{
-  color:#4a4136 !important;
-}
-
-.grammar{
-  background:#e3d2b7 !important;
-  border-left:3px solid var(--bronze) !important;
-  border-radius:2px !important;
-  color:#4a3c2c !important;
-}
-
-.chart-bars{
-  border-bottom:1px solid #8f7958 !important;
-}
-
-.chart-bar{
-  background:linear-gradient(#b78942,#7f4b27) !important;
-  border-radius:2px 2px 0 0 !important;
-}
-
-.badge-row .badge{
-  box-shadow:none !important;
-}
-
-@media(max-width:520px){
-  header h1{font-size:26px !important}
-  .metric-value{font-size:26px !important}
-  .today-card,.card{padding:16px !important}
-}
-
-
-html{
-  -webkit-text-size-adjust:100%;
-  touch-action:manipulation;
-}
-body{
-  overscroll-behavior-y:contain;
-}
-button,select,input,textarea{
-  font-size:16px !important;
-}
-button,.tab,.day,.audio,.today-select{
-  touch-action:manipulation;
-}
-*{
-  -webkit-tap-highlight-color:transparent;
-}
-.today-actions{
-  grid-template-columns:1fr !important;
-}
-.today-actions button{
-  width:100% !important;
-  min-height:56px !important;
-}
-
 </style>
-
 <style id="final-historical-theme">
 :root{
   --ink:#171512;
@@ -822,29 +277,38 @@ button:active,.tab:active,.audio:active{
 }
 </style>
 
+<style id="final-mobile-fix">
+html{-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{overscroll-behavior-y:contain;line-height:1.65}
+button,select,input,textarea{font-size:16px!important}
+button,.tab,.day,.audio,.today-select{touch-action:manipulation}
+*{-webkit-tap-highlight-color:transparent}
+.today-actions{grid-template-columns:1fr!important}
+.today-actions button{width:100%!important;min-height:56px!important}
+.card{margin-bottom:16px}
+</style>
 </head>
 <body>
 <header>
 <div class="wrap">
-<h1 style="margin:0;font-size:25px">韓国ドラマ・接客・会社で役立つ 30日韓国語日常会話特訓アプリ</h1>
+<h1 style="margin:0;font-size:25px">韓国ドラマ・レストラン接客・会社で役立つ 韓国語日常会話特訓アプリ</h1>
 <div style="margin-top:6px">Day1〜30収録｜達成度・学習時間・初回正解率も自動記録</div>
 </div>
 </header>
 
 <main class="wrap">
-
-
+<div class="section-label">学びの記録</div>
 <div class="card">
-<b id="status">学びの進み具合</b>
+<b id="status">読み込み中</b>
 <div class="progress" style="margin-top:10px"><div class="bar" id="bar"></div></div>
 <div class="dashboard">
-  <div class="metric"><div class="metric-label">達成度</div><div class="metric-value" id="metricProgress">0%</div><div class="metric-sub" id="metricLessons">0 / 30 Day</div></div>
+  <div class="metric"><div class="metric-label">達成度</div><div class="metric-value" id="metricProgress">0%</div><div class="metric-sub" id="metricLessons">0 / 20 Day</div></div>
   <div class="metric"><div class="metric-label">累計学習時間</div><div class="metric-value" id="metricTime">0分</div><div class="metric-sub">この端末で記録</div></div>
   <div class="metric"><div class="metric-label">初回正解率</div><div class="metric-value" id="metricAccuracy">—</div><div class="metric-sub" id="metricTests">テスト未実施</div></div>
   <div class="metric"><div class="metric-label">連続学習</div><div class="metric-value" id="metricStreak">0日</div><div class="metric-sub" id="metricToday">今日も少し進めよう</div></div>
 </div>
 <div class="motivation motivation-default" id="motivation">
-  <div class="motivation-title" id="motivationTitle">今日のひとこと</div>
+  <div class="motivation-title" id="motivationTitle">今日の応援メッセージ</div>
   <div class="motivation-message" id="motivationMessage">まずは5分。今日の1問が、ドラマの聞き取りにつながります。</div>
 </div>
 <div class="badge-row" id="badgeRow"></div>
@@ -860,11 +324,11 @@ button:active,.tab:active,.audio:active{
       <div class="today-title">今日学ぶDayを選ぶ</div>
       <div class="today-recommend" id="todayRecommendation">次に進むDay</div>
     </div>
-    <div class="badge" id="todayBadge">SELECT</div>
+    <div class="badge" id="todayBadge">TODAY</div>
   </div>
   <select id="todayDaySelect" class="today-select" aria-label="今日学習するDay"></select>
   <div class="day-preview" id="todayDayPreview"></div>
-  <div class="day-list-hint">Dayを選ぶと、タイトルと代表フレーズを確認できます。</div>
+  <div class="day-list-hint">Dayを選ぶと、タイトルと代表フレーズが表示されます。</div>
   <div class="today-actions">
     <button type="button" class="primary" id="startTodayBtn">このDayを始める</button>
   </div>
@@ -912,10 +376,6 @@ let activeStartedAt=Date.now();
 let lastActivityAt=Date.now();
 
 state.stats=state.stats||{totalSeconds:0,lastActive:"",streak:0,testHistory:[]};
-state.unlocked=Math.max(3,Number(state.unlocked||3));
-state.selected=Math.max(1,Math.min(Number(state.selected||1),state.unlocked));
-state.dayDone=state.dayDone||{};
-state.blockDone=state.blockDone||{};
 state.stats.totalSeconds=Number(state.stats.totalSeconds||0);
 state.stats.testHistory=Array.isArray(state.stats.testHistory)?state.stats.testHistory:[];
 state.stats.streak=Number(state.stats.streak||0);
@@ -994,49 +454,35 @@ function renderDayPreview(n){
 function renderTodaySelector(){
   const select=$("todayDaySelect");
   if(!select)return;
-
+  const currentValue=Number(select.value)||state.selected||1;
   select.innerHTML="";
-  const unlocked=Math.max(1,Number(state.unlocked||3));
-
   for(let n=1;n<=30;n++){
     const opt=document.createElement("option");
     opt.value=String(n);
-    const locked=n>unlocked;
+    const locked=n>state.unlocked;
+    opt.disabled=locked;
     const done=!!state.dayDone[n];
     const cat=getDayCategory(n);
-
-    opt.disabled=locked;
     opt.textContent=`Day ${n}｜${cat.label}｜${DAYS[n-1].title}${locked?"（未解放）":done?"（学習済み）":""}`;
     select.appendChild(opt);
   }
-
-  let selected=Number(state.selected||1);
-  if(!selected || selected>unlocked) selected=1;
-  select.value=String(selected);
-
-  const next=getRecommendedDay();
-  $("todayRecommendation").textContent=`次に進む：Day ${next}「${DAYS[next-1].title}」`;
-  $("todayBadge").textContent=state.dayDone[next]?"復習":"SELECT";
-  renderDayPreview(selected);
+  const recommended=getRecommendedDay();
+  select.value=String(currentValue<=state.unlocked?currentValue:recommended);
+  $("todayRecommendation").textContent=`次に進むDay：Day ${recommended}「${DAYS[recommended-1].title}」`;
+  $("todayBadge").textContent=state.dayDone[recommended]?"復習":"TODAY";
+  renderDayPreview(Number(select.value));
 }
 function openSelectedDay(dayNumber){
   const n=Number(dayNumber);
-  const unlocked=Math.max(1,Number(state.unlocked||3));
-
-  if(!n || n<1 || n>unlocked){
+  if(!n || n>state.unlocked){
     alert("このDayはまだ解放されていません。");
     return;
   }
-
   state.selected=n;
   mode="words";
   save();
   renderApp();
-
-  requestAnimationFrame(()=>{
-    const title=$("lessonTitle");
-    if(title) title.scrollIntoView({behavior:"smooth",block:"start"});
-  });
+  document.querySelector(".card:nth-of-type(4)")?.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function renderDashboard(){
   const completed=Object.keys(state.dayDone||{}).filter(k=>state.dayDone[k]&&Number(k)<=30).length;
@@ -1053,7 +499,12 @@ function renderDashboard(){
   $("metricAccuracy").textContent=accuracy===null?"—":accuracy+"%";
   $("metricTests").textContent=history.length?`${history.length}回の初回回答を集計`:"テスト未実施";
   $("metricStreak").textContent=(state.stats.streak||0)+"日";
-「${DAYS[rec-1].title}」。5分から始めてみましょう。`;
+  if($("heroStreak"))$("heroStreak").textContent=`連続 ${state.stats.streak||0}日`;
+  if($("heroProgress"))$("heroProgress").textContent=`達成度 ${pct}%`;
+  if($("heroTime"))$("heroTime").textContent=mins<60?`学習 ${mins}分`:`学習 ${Math.floor(mins/60)}時間${mins%60}分`;
+  if($("heroCopy")){
+    const rec=getRecommendedDay();
+    $("heroCopy").textContent=`おすすめはDay ${rec}「${DAYS[rec-1].title}」。5分から始めてみましょう。`;
   }
   $("metricToday").textContent=state.stats.lastActive===localDateKey()?"本日学習済み":"今日も少し進めよう";
 
@@ -1061,7 +512,7 @@ function renderDashboard(){
   const motivationTitle=$("motivationTitle");
   const motivationMessage=$("motivationMessage");
   motivation.className="motivation motivation-default";
-  let msgTitle="今日のひとこと";
+  let msgTitle="今日の応援メッセージ";
   let msg="まずは5分。今日の1問が、ドラマの聞き取りにつながります。";
   if(pct>=100){
     msgTitle="Day30 完全達成";
@@ -1086,8 +537,8 @@ function renderDashboard(){
   }
   motivationTitle.textContent=msgTitle;
   motivationMessage.textContent=msg;
-  const rec=getRecommendedDay();
-const badges=[];
+
+  const badges=[];
   if(completed>=1)badges.push("最初の一歩");
   if(completed>=5)badges.push("5Day達成");
   if(completed>=10)badges.push("折り返し突破");
