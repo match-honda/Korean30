@@ -326,6 +326,96 @@ button,.tab,.day,.audio,.today-select{touch-action:manipulation}
   .song-actions{grid-template-columns:1fr}
 }
 
+
+.quiz-result{
+  padding:4px 0 12px;
+}
+.result-finish-label{
+  display:inline-block;
+  margin-bottom:8px;
+  padding:5px 9px;
+  border:1px solid #a47b36;
+  background:#28231d;
+  color:#e7bd64;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+.quiz-result h2{
+  margin:4px 0 16px;
+  font-size:28px;
+}
+.result-score{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:15px;
+}
+.result-score>div{
+  padding:17px 10px;
+  text-align:center;
+  background:#efe0c5;
+  border:1px solid #9b815d;
+  border-radius:5px;
+}
+.result-number{
+  display:block;
+  font-size:34px;
+  font-weight:900;
+  color:#932f25;
+}
+.result-caption{
+  display:block;
+  margin-top:4px;
+  color:#645846;
+  font-size:13px;
+}
+.result-section{
+  margin-top:20px;
+  padding-top:17px;
+  border-top:3px double #9b815d;
+}
+.result-section h3{
+  margin:0 0 12px;
+  font-size:20px;
+}
+.mistake-card{
+  margin:0 0 14px;
+  padding:15px;
+  border-left:5px solid #9b3026;
+  background:#f2e5cf;
+  border-radius:4px;
+  line-height:1.7;
+}
+.mistake-card .ko{
+  margin:8px 0;
+  font-size:24px;
+}
+.correct-answer{
+  margin-top:4px;
+  color:#7e261e;
+}
+.result-perfect{
+  margin-top:18px;
+  padding:18px;
+  text-align:center;
+  font-weight:900;
+  background:#e5eddb;
+  border:1px solid #72815e;
+  border-radius:5px;
+}
+.result-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+  padding-top:18px;
+  border-top:3px double #9b815d;
+}
+@media(max-width:520px){
+  .result-actions{grid-template-columns:1fr}
+}
+
 </style>
 <style id="final-historical-theme">
 :root{
@@ -622,6 +712,7 @@ let quizDays=[];
 let quizFirstTryCorrect=0;
 let quizAnswered=0;
 let quizFailed=false;
+let quizMistakes=[];
 let activeStartedAt=Date.now();
 let lastActivityAt=Date.now();
 
@@ -1203,7 +1294,7 @@ function updateBlockTestButton(){
 
 function startDayTest(){
   quizDays=[state.selected];
-  quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;markActivity();
+  quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;quizMistakes=[];markActivity();
   quiz=makeQuiz(quizDays);
   questionIndex=0;
   mode="daytest";
@@ -1228,7 +1319,7 @@ function startBlockTest(){
   }
 
   quizDays=required;
-  quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;markActivity();
+  quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;quizMistakes=[];markActivity();
   quiz=makeQuiz(quizDays);
   questionIndex=0;
   mode="blocktest";
@@ -1260,39 +1351,71 @@ function answerQuestion(button){
   const selected=button.dataset.answer;
   const all=[...document.querySelectorAll(".choice")];
   all.forEach(b=>b.disabled=true);
+
   const correct=selected===q.a;
   quizAnswered++;
-  if(correct)quizFirstTryCorrect++; else quizFailed=true;
+
+  if(correct){
+    quizFirstTryCorrect++;
+  }else{
+    quizFailed=true;
+    quizMistakes.push({
+      day:q.day,
+      type:q.type,
+      korean:q.q,
+      reading:q.r,
+      selected,
+      correct:q.a
+    });
+  }
+
   markActivity();
   button.classList.add(correct?"ok":"ng");
+
   if(!correct){
     const correctButton=all.find(b=>b.dataset.answer===q.a);
     if(correctButton)correctButton.classList.add("ok");
   }
+
   $("feedback").innerHTML=`
-    <div class="${correct?'success':'notice'}">${correct?'正解です':'不正解です。全問正解が条件のため、最初から再挑戦します。'}</div>
+    <div class="${correct?'success':'notice'}">
+      ${correct
+        ? "正解です。"
+        : `不正解です。正解は「${escapeHtml(q.a)}」です。最後に間違えた問題をまとめて確認できます。`}
+    </div>
     <div class="review">
       <div class="ko">${escapeHtml(q.q)}</div>
       <div class="read" data-reading="${encodeURIComponent(q.r)}" hidden></div>
-      <div class="reading-placeholder">音声ボタンでカタカナ読みを表示</div><div class="jp">${escapeHtml(q.a)}</div>
+      <div class="reading-placeholder">音声ボタンでカタカナ読みを表示</div>
+      <div class="jp">${escapeHtml(q.a)}</div>
       <button type="button" class="audio" data-speak="${encodeURIComponent(q.q)}">音声で復習（読みを表示）</button>
     </div>
-    <button type="button" class="primary" data-next="${correct?'next':'retry'}">${correct?'次の問題へ':'最初から再挑戦'}</button>`;
+    <button type="button" class="primary" data-next="next">
+      ${questionIndex+1>=quiz.length ? "結果を見る" : "次の問題へ"}
+    </button>`;
 }
-
 function finishQuiz(){
-  if(quizAnswered>0){
+  const total=quiz.length;
+  const correct=quizFirstTryCorrect;
+  const accuracy=total?Math.round((correct/total)*100):0;
+  const passed=correct===total;
+
+  if(total>0){
     state.stats.testHistory.push({
       date:new Date().toISOString(),
       type:mode,
       days:[...quizDays],
-      correct:quizFirstTryCorrect,
-      total:quizAnswered
+      correct,
+      total
     });
     state.stats.testHistory=state.stats.testHistory.slice(-50);
   }
+
   commitStudyTime();
-  if(mode==="daytest"){
+
+  let unlockMessage="";
+
+  if(passed && mode==="daytest"){
     state.dayDone[state.selected]=true;
     save();
     updateBlockTestButton();
@@ -1300,32 +1423,71 @@ function finishQuiz(){
     const blockDays=getCurrentBlockDays();
     const unfinished=blockDays.filter(n=>!state.dayDone[n]);
 
-    if(unfinished.length===0){
-      $("content").innerHTML=
-        '<div class="success"><b>この3日分のDayテストをすべて完了しました。</b><br>3日まとめテストが解放されました。</div>';
-    }else{
-      $("content").innerHTML=
-        `<div class="success"><b>Day ${state.selected}テスト全15問正解です。</b><br>まとめテスト解放まで、残り：Day ${unfinished.join("・")}</div>`;
-    }
-  } else {
+    unlockMessage=unfinished.length===0
+      ? "この3日分のDayテストがすべて完了し、3日まとめテストが解放されました。"
+      : `Day ${state.selected}のテスト完了。まとめテスト解放まで残り：Day ${unfinished.join("・")}`;
+  }else if(passed && mode==="blocktest"){
     const end=Math.max(...quizDays);
     const block=end/3;
     state.blockDone[block]=true;
     quizDays.forEach(n=>state.dayDone[n]=true);
+
     if(end<30){
       state.unlocked=Math.min(30,end+3);
-      state.selected=end+1;
-      mode="words";
-      save();
-      renderApp();
-      $("content").innerHTML=`<div class="success"><b>3日分を完全クリアしました。</b><br>Day ${end+1}〜${Math.min(30,end+3)}を解放しました。</div>`;
-    } else {
-      save();
-      renderApp();
+      unlockMessage=`3日分を完全クリアしました。Day ${end+1}〜${Math.min(30,end+3)}を解放しました。`;
+    }else{
+      unlockMessage="Day30まで、すべてのまとめテストを完全クリアしました。";
     }
+    save();
+  }else{
+    save();
+    unlockMessage="今回は完了扱いになりません。全問正解するとテスト完了になります。";
   }
-}
 
+  const mistakeHtml=quizMistakes.length
+    ? `<div class="result-section">
+        <h3>間違えた問題 ${quizMistakes.length}問</h3>
+        ${quizMistakes.map((m,i)=>`
+          <div class="mistake-card">
+            <div class="muted">${i+1}. Day ${m.day}　${escapeHtml(m.type)}</div>
+            <div class="ko">${escapeHtml(m.korean)}</div>
+            <div><b>あなたの回答：</b>${escapeHtml(m.selected)}</div>
+            <div class="correct-answer"><b>正解：</b>${escapeHtml(m.correct)}</div>
+            <div class="read" data-reading="${encodeURIComponent(m.reading)}" hidden></div>
+            <div class="reading-placeholder">音声ボタンでカタカナ読みを表示</div>
+            <button type="button" class="audio" data-speak="${encodeURIComponent(m.korean)}">音声で確認（読みを表示）</button>
+          </div>`).join("")}
+      </div>`
+    : `<div class="result-perfect">全問正解です。間違えた問題はありません。</div>`;
+
+  $("content").innerHTML=`
+    <div class="quiz-result">
+      <div class="result-finish-label">TEST FINISH</div>
+      <h2>${passed?"テスト完了":"テスト結果"}</h2>
+
+      <div class="result-score">
+        <div>
+          <span class="result-number">${accuracy}%</span>
+          <span class="result-caption">正解率</span>
+        </div>
+        <div>
+          <span class="result-number">${correct}/${total}</span>
+          <span class="result-caption">正解数</span>
+        </div>
+      </div>
+
+      <div class="${passed?'success':'notice'}">${escapeHtml(unlockMessage)}</div>
+
+      ${mistakeHtml}
+
+      <div class="result-actions">
+        <button type="button" class="primary" data-result-action="retry">もう一度挑戦する</button>
+        <button type="button" data-result-action="study">学習に戻る</button>
+      </div>
+    </div>`;
+
+  window.scrollTo({top:$("lessonTitle").offsetTop-12,behavior:"smooth"});
+}
 document.addEventListener("click",event=>{
   markActivity();
 
@@ -1412,14 +1574,28 @@ document.addEventListener("click",event=>{
 
   const nextButton=event.target.closest("[data-next]");
   if(nextButton){
-    if(nextButton.dataset.next==="next"){
-      questionIndex++;
-      showQuestion();
-    } else {
+    questionIndex++;
+    showQuestion();
+    return;
+  }
+
+  const resultButton=event.target.closest("[data-result-action]");
+  if(resultButton){
+    if(resultButton.dataset.resultAction==="retry"){
+      quizFirstTryCorrect=0;
+      quizAnswered=0;
+      quizFailed=false;
+      quizMistakes=[];
       quiz=makeQuiz(quizDays);
       questionIndex=0;
       showQuestion();
+    }else{
+      mode="words";
+      setActiveTab(mode);
+      renderLesson();
+      window.scrollTo({top:$("lessonTitle").offsetTop-12,behavior:"smooth"});
     }
+    return;
   }
 });
 
