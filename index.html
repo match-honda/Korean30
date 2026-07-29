@@ -121,6 +121,181 @@ button,.tab,.day,.audio,.today-select{touch-action:manipulation}
   transform:none !important;
 }
 
+
+.special-section{
+  margin:18px 0 24px;
+}
+.special-title{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.05em;
+  margin:0 0 10px;
+}
+.special-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.special-card{
+  position:relative;
+  text-align:left;
+  min-height:128px;
+  padding:16px;
+  border-radius:6px;
+  border:1px solid #8c7451;
+  background:linear-gradient(145deg,#f3e7d1,#dcc4a0);
+  color:#241f19;
+  box-shadow:0 5px 0 #4a3a28,0 9px 18px rgba(42,31,19,.12);
+}
+.special-card:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 #4a3a28,0 5px 12px rgba(42,31,19,.10);
+}
+.special-number{
+  display:inline-block;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  color:#f6e5bd;
+  background:#2b2721;
+  border:1px solid #b98a3d;
+  border-radius:3px;
+  padding:4px 7px;
+}
+.special-card-title{
+  font-size:18px;
+  font-weight:900;
+  line-height:1.4;
+  margin-top:10px;
+}
+.special-card-copy{
+  font-size:13px;
+  line-height:1.55;
+  color:#645846;
+  margin-top:5px;
+}
+.special-panel{
+  margin:14px 0 20px;
+  padding:18px;
+  border-radius:7px;
+  background:linear-gradient(145deg,#fffaf0,#ead8ba);
+  border:1px solid #907653;
+  box-shadow:0 10px 24px rgba(42,32,20,.11);
+}
+.special-panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+.special-panel-title{
+  font-size:23px;
+  line-height:1.4;
+  font-weight:900;
+}
+.special-close{
+  min-width:72px;
+  min-height:42px;
+}
+.special-lead{
+  margin-top:10px;
+  line-height:1.75;
+  color:#514638;
+}
+.special-block{
+  margin-top:16px;
+  padding:15px;
+  background:rgba(255,250,240,.72);
+  border-left:4px solid #8e2f24;
+  border-radius:3px;
+}
+.special-block h3{
+  margin:0 0 9px;
+  font-size:17px;
+}
+.special-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:8px;
+  font-size:14px;
+}
+.special-table th,.special-table td{
+  border-bottom:1px solid rgba(110,86,53,.25);
+  padding:9px 6px;
+  text-align:left;
+  vertical-align:top;
+  line-height:1.55;
+}
+.special-example{
+  margin-top:10px;
+  padding:12px;
+  border-radius:3px;
+  background:#e8d7ba;
+}
+.special-example-ko{
+  font-size:22px;
+  font-weight:900;
+}
+.special-example-read{
+  color:#8e2f24;
+  font-weight:800;
+  margin-top:4px;
+}
+.special-example-tip{
+  margin-top:6px;
+  line-height:1.65;
+  color:#504536;
+}
+.special-audio{
+  margin-top:10px;
+}
+@media(max-width:640px){
+  .special-grid{grid-template-columns:1fr}
+  .special-card{min-height:auto}
+}
+
+
+.item .read,
+.review .read{
+  position:relative;
+  color:transparent !important;
+  user-select:none;
+  min-height:1.6em;
+}
+.item .read::after,
+.review .read::after{
+  content:"音声を聞くと読みが表示されます";
+  position:absolute;
+  left:0;
+  top:0;
+  color:#6c6255;
+  font-size:13px;
+  line-height:1.6;
+}
+.item.reading-revealed .read,
+.review.reading-revealed .read{
+  color:var(--vermilion,#8e2f24) !important;
+  user-select:text;
+}
+.item.reading-revealed .read::after,
+.review.reading-revealed .read::after{
+  display:none;
+}
+.special-example-read{
+  display:none;
+}
+.special-read-placeholder{
+  color:#6c6255;
+  margin-top:4px;
+  line-height:1.6;
+}
+.special-example.reading-revealed .special-example-read{
+  display:block;
+}
+.special-example.reading-revealed .special-read-placeholder{
+  display:none;
+}
+
 </style>
 <style id="final-historical-theme">
 :root{
@@ -355,7 +530,31 @@ button,.tab,.day,.audio,.today-select{touch-action:manipulation}
   </div>
 </div>
 
+
+<div class="special-section">
+  <div class="special-title">Day1の前に｜発音の特別講座</div>
+  <div class="special-grid">
+    <button type="button" class="special-card" data-special="1">
+      <span class="special-number">SPECIAL 1</span>
+      <div class="special-card-title">ハングルの仕組みと母音</div>
+      <div class="special-card-copy">文字の組み立て方、口の形、日本語にない母音を学ぶ</div>
+    </button>
+    <button type="button" class="special-card" data-special="2">
+      <span class="special-number">SPECIAL 2</span>
+      <div class="special-card-title">子音・濃音・激音</div>
+      <div class="special-card-copy">平音との違い、息の強さ、聞き分けのコツを学ぶ</div>
+    </button>
+    <button type="button" class="special-card" data-special="3">
+      <span class="special-number">SPECIAL 3</span>
+      <div class="special-card-title">パッチムと音変化</div>
+      <div class="special-card-copy">語末の止め方、連音化、鼻音化、濃音化を学ぶ</div>
+    </button>
+  </div>
+  <div id="specialLessonArea"></div>
+</div>
+
 <div class="section-label">Day一覧</div>
+
 <div class="grid" id="dayGrid"></div>
 
 <div class="card">
@@ -604,6 +803,170 @@ function renderDashboard(){
     }).join("")+'</div><div class="muted" style="margin-top:7px">直近10回。横軸はテスト順、縦軸は初回正解率です。</div>';
   }
 }
+
+const SPECIAL_LESSONS={
+  1:{
+    title:"特別講座1｜ハングルの仕組みと母音",
+    lead:"ハングルは、子音と母音を四角い1ブロックに組み合わせて読みます。まずは文字の形を丸暗記するより、口の形と音の方向を覚えるのが近道です。",
+    blocks:[
+      {
+        title:"1. 文字は「子音＋母音」で1音節",
+        html:`<p>例：ㄱ（k/g系）＋ㅏ（a）＝가（カ／ガ）</p>
+        <p>子音が左、母音が右または下に入ります。</p>
+        <table class="special-table">
+          <tr><th>形</th><th>組み方</th><th>例</th></tr>
+          <tr><td>縦型母音</td><td>子音の右</td><td>가・너・미</td></tr>
+          <tr><td>横型母音</td><td>子音の下</td><td>고・무・그</td></tr>
+        </table>`
+      },
+      {
+        title:"2. 基本母音と口の形",
+        html:`<table class="special-table">
+          <tr><th>母音</th><th>目安</th><th>発音のコツ</th></tr>
+          <tr><td>ㅏ</td><td>ア</td><td>口を縦に自然に開く</td></tr>
+          <tr><td>ㅓ</td><td>オとアの間</td><td>口を縦に開き、舌を奥へ。日本語の「オ」にしすぎない</td></tr>
+          <tr><td>ㅗ</td><td>オ</td><td>唇を丸く前へ出す</td></tr>
+          <tr><td>ㅜ</td><td>ウ</td><td>唇を強く丸める</td></tr>
+          <tr><td>ㅡ</td><td>ウ</td><td>唇を横に引き、舌を平らにする</td></tr>
+          <tr><td>ㅣ</td><td>イ</td><td>口角を横に引く</td></tr>
+        </table>`
+      },
+      {
+        title:"3. 日本人が迷いやすい母音",
+        html:`<div class="special-example">
+          <div class="special-example-ko">어 / 오</div>
+          <div class="special-example-read">オに聞こえる2つの音</div>
+          <div class="special-read-placeholder">音声を聞くと読みが表示されます</div>
+          <div class="special-example-tip">어 は口を縦に開き、오 は唇を丸めます。音だけでなく口の形で覚えましょう。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("어 오 어 오")}">音声を聞く</button>
+        </div>
+        <div class="special-example">
+          <div class="special-example-ko">으 / 우</div>
+          <div class="special-example-read">ウに聞こえる2つの音</div>
+          <div class="special-read-placeholder">音声を聞くと読みが表示されます</div>
+          <div class="special-example-tip">으 は唇を横に、우 は唇を丸く前へ出します。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("으 우 으 우")}">音声を聞く</button>
+        </div>`
+      }
+    ]
+  },
+  2:{
+    title:"特別講座2｜子音・濃音・激音",
+    lead:"韓国語の子音には、普通の強さの平音、詰めて強く出す濃音、息を強く出す激音があります。カタカナだけでは区別しにくいため、息と喉の使い方を意識します。",
+    blocks:[
+      {
+        title:"1. 平音・濃音・激音の3種類",
+        html:`<table class="special-table">
+          <tr><th>種類</th><th>例</th><th>発音の特徴</th></tr>
+          <tr><td>平音</td><td>ㄱ ㄷ ㅂ ㅈ</td><td>自然な強さ。語頭では軽く、語中では濁って聞こえることがある</td></tr>
+          <tr><td>濃音</td><td>ㄲ ㄸ ㅃ ㅉ ㅆ</td><td>息を出さず、喉を締めて短く強く出す</td></tr>
+          <tr><td>激音</td><td>ㅋ ㅌ ㅍ ㅊ</td><td>息を強く前へ出す</td></tr>
+        </table>`
+      },
+      {
+        title:"2. 息で聞き分ける",
+        html:`<div class="special-example">
+          <div class="special-example-ko">가 / 까 / 카</div>
+          <div class="special-example-read">カ・ッカ・カッ</div>
+          <div class="special-read-placeholder">音声を聞くと読みが表示されます</div>
+          <div class="special-example-tip">가 は自然、까 は息を止めて詰める、카 は手のひらに息が当たるほど強く出します。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("가 까 카")}">音声を聞く</button>
+        </div>
+        <div class="special-example">
+          <div class="special-example-ko">자 / 짜 / 차</div>
+          <div class="special-example-read">チャ・ッチャ・チャッ</div>
+          <div class="special-read-placeholder">音声を聞くと読みが表示されます</div>
+          <div class="special-example-tip">짜 は短く硬く、차 は息が強く出ます。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("자 짜 차")}">音声を聞く</button>
+        </div>`
+      },
+      {
+        title:"3. ㄹ・ㅅ・ㅎの注意点",
+        html:`<table class="special-table">
+          <tr><th>子音</th><th>発音アドバイス</th></tr>
+          <tr><td>ㄹ</td><td>語中は舌先を軽く1回はじく。語末では舌先を上の歯茎につけたまま止める</td></tr>
+          <tr><td>ㅅ</td><td>ㅣ・ㅑ・ㅕ・ㅛ・ㅠの前では「シ」に近くなる</td></tr>
+          <tr><td>ㅎ</td><td>単独では息の音。前後の子音を激音化させることがある</td></tr>
+        </table>`
+      }
+    ]
+  },
+  3:{
+    title:"特別講座3｜パッチムと音変化",
+    lead:"パッチムは、音節の最後に置かれる子音です。日本語のように母音を足さず、口や舌を決めた位置で止めることが重要です。会話では次の音とつながり、発音が変化します。",
+    blocks:[
+      {
+        title:"1. 代表的なパッチムの止め方",
+        html:`<table class="special-table">
+          <tr><th>代表音</th><th>文字例</th><th>止め方</th></tr>
+          <tr><td>ㄱ</td><td>국・먹</td><td>「ク」と言わず、喉の奥で息を止める</td></tr>
+          <tr><td>ㄴ</td><td>안・산</td><td>舌先を上の歯茎につけ、鼻へ抜く</td></tr>
+          <tr><td>ㄷ</td><td>옷・받</td><td>舌先を上の歯茎につけたまま止める</td></tr>
+          <tr><td>ㄹ</td><td>말・물</td><td>舌先を上の歯茎につけたまま止める</td></tr>
+          <tr><td>ㅁ</td><td>밤・마음</td><td>唇を閉じて鼻へ抜く</td></tr>
+          <tr><td>ㅂ</td><td>밥・입</td><td>唇を閉じたまま音を止める</td></tr>
+          <tr><td>ㅇ</td><td>공・사랑</td><td>舌の奥を上げ「ング」の鼻音で止める</td></tr>
+        </table>`
+      },
+      {
+        title:"2. 連音化",
+        html:`<div class="special-example">
+          <div class="special-example-ko">한국어</div>
+          <div class="special-example-read">ハングゴ</div>
+          <div class="special-read-placeholder">音声を聞くと読みが表示されます</div>
+          <div class="special-example-tip">국 のパッチム ㄱ が、次の 어 の頭へ移って「거」のようにつながります。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("한국어")}">音声を聞く</button>
+        </div>
+        <div class="special-example">
+          <div class="special-example-ko">맛있어요</div>
+          <div class="special-example-read">マシッソヨ</div>
+          <div class="special-read-placeholder">音声を聞くと読みが表示されます</div>
+          <div class="special-example-tip">実際の会話では「マッ・イッソヨ」と切らず、滑らかにつなげます。</div>
+          <button type="button" class="audio special-audio" data-speak="${encodeURIComponent("맛있어요")}">音声を聞く</button>
+        </div>`
+      },
+      {
+        title:"3. よく出る音変化",
+        html:`<table class="special-table">
+          <tr><th>変化</th><th>例</th><th>ポイント</th></tr>
+          <tr><td>鼻音化</td><td>국물 → 궁물</td><td>ㄱ が ㅁ の前で ㅇ に近づく</td></tr>
+          <tr><td>濃音化</td><td>학교 → 학꾜</td><td>パッチム後の平音が濃音になる</td></tr>
+          <tr><td>激音化</td><td>좋다 → 조타</td><td>ㅎ の影響で次の子音が激音になる</td></tr>
+          <tr><td>流音化</td><td>신라 → 실라</td><td>ㄴ＋ㄹ が ㄹ＋ㄹ に変わる</td></tr>
+        </table>
+        <p class="special-example-tip">最初から規則をすべて暗記する必要はありません。単語ごとに「実際の音」を音声で覚え、後から規則名を結びつけましょう。</p>`
+      }
+    ]
+  }
+};
+
+function renderSpecialLesson(number){
+  const lesson=SPECIAL_LESSONS[number];
+  const area=$("specialLessonArea");
+  if(!lesson||!area)return;
+
+  area.innerHTML=`
+    <div class="special-panel">
+      <div class="special-panel-head">
+        <div class="special-panel-title">${escapeHtml(lesson.title)}</div>
+        <button type="button" class="special-close" data-special-close="1">閉じる</button>
+      </div>
+      <div class="special-lead">${escapeHtml(lesson.lead)}</div>
+      ${lesson.blocks.map(block=>`
+        <div class="special-block">
+          <h3>${escapeHtml(block.title)}</h3>
+          ${block.html}
+        </div>`).join("")}
+    </div>`;
+
+  area.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function closeSpecialLesson(){
+  const area=$("specialLessonArea");
+  if(area)area.innerHTML="";
+}
+
 function renderApp(){
   renderDashboard();
   renderTodaySelector();
@@ -647,7 +1010,7 @@ function renderLesson(){
       <div class="read">${escapeHtml(item[1])}</div>
       <div class="jp">${escapeHtml(item[2])}</div>
       ${item[3] ? `<div class="grammar"><b>文法：</b>${escapeHtml(item[3])}</div>` : ""}
-      <button type="button" class="audio" data-speak="${encodeURIComponent(item[0])}">音声を聞く</button>`;
+      <button type="button" class="audio" data-speak="${encodeURIComponent(item[0])}">音声を聞く（読みを表示）</button>`;
       content.appendChild(row);
     });
   }
@@ -775,7 +1138,7 @@ function answerQuestion(button){
       <div class="ko">${escapeHtml(q.q)}</div>
       <div class="read">${escapeHtml(q.r)}</div>
       <div class="jp">${escapeHtml(q.a)}</div>
-      <button type="button" class="audio" data-speak="${encodeURIComponent(q.q)}">音声で復習</button>
+      <button type="button" class="audio" data-speak="${encodeURIComponent(q.q)}">音声で復習（読みを表示）</button>
     </div>
     <button type="button" class="primary" data-next="${correct?'next':'retry'}">${correct?'次の問題へ':'最初から再挑戦'}</button>`;
 }
@@ -829,6 +1192,18 @@ function finishQuiz(){
 document.addEventListener("click",event=>{
   markActivity();
 
+  const specialButton=event.target.closest("[data-special]");
+  if(specialButton){
+    renderSpecialLesson(Number(specialButton.dataset.special));
+    return;
+  }
+
+  const specialClose=event.target.closest("[data-special-close]");
+  if(specialClose){
+    closeSpecialLesson();
+    return;
+  }
+
   const startButton=event.target.closest("#startTodayBtn");
   if(startButton){
     const select=$("todayDaySelect");
@@ -866,6 +1241,8 @@ document.addEventListener("click",event=>{
 
   const audioButton=event.target.closest("[data-speak]");
   if(audioButton){
+    const revealTarget=audioButton.closest(".item, .review, .special-example");
+    if(revealTarget) revealTarget.classList.add("reading-revealed");
     speak(decodeURIComponent(audioButton.dataset.speak));
     return;
   }
