@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#5836c7">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>キム秘書で学ぶ30日韓国語 Day1-6完成版</title>
+<title>韓国ドラマ・接客・会社で役立つ 30日韓国語日常会話特訓アプリ</title>
 <style>
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;touch-action:manipulation}
@@ -37,23 +37,816 @@ button:active{transform:scale(.985)}
 .hidden{display:none}
 .notice{background:#fff4dd;padding:12px;border-radius:10px;margin-top:10px}
 .success{background:#e7f7ee;padding:12px;border-radius:10px;margin-top:10px;color:#126b3e}
+.dashboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.metric{background:linear-gradient(145deg,#fff,#f6f3ff);border:1px solid #e5defa;border-radius:14px;padding:13px;min-height:86px}
+.metric-label{font-size:13px;color:#6f6787}
+.metric-value{font-size:25px;font-weight:850;margin-top:4px;color:#4326a8}
+.metric-sub{font-size:12px;color:#777;margin-top:3px}
+.motivation{margin-top:14px;padding:15px 16px;border-radius:14px;font-weight:700;border:0;position:relative;overflow:hidden}
+.motivation:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-32px;top:-36px;background:rgba(255,255,255,.22)}
+.motivation-default{background:linear-gradient(135deg,#f0edff,#e7e1ff);color:#4a31a6}
+.motivation-streak{background:linear-gradient(135deg,#e7f8ef,#d8f2e4);color:#1d6840}
+.motivation-score{background:linear-gradient(135deg,#e9f3ff,#dcecff);color:#245c9c}
+.motivation-achievement{background:linear-gradient(135deg,#fff2d8,#ffe7b8);color:#875300}
+.motivation-title{font-size:13px;font-weight:900;opacity:.78;margin-bottom:4px}
+.motivation-message{font-size:16px;line-height:1.5;position:relative;z-index:1}
+.chart-wrap{margin-top:14px;border-top:1px solid #eee;padding-top:14px}
+.chart-bars{display:flex;align-items:flex-end;gap:7px;height:125px;padding:8px 4px 0;border-bottom:1px solid #ccc}
+.chart-col{flex:1;min-width:18px;text-align:center}
+.chart-bar{width:100%;min-height:4px;background:linear-gradient(#7d60e5,#5836c7);border-radius:6px 6px 0 0}
+.chart-label{font-size:10px;color:#777;margin-top:5px}
+.chart-empty{padding:16px;background:#f7f7fa;border-radius:10px;color:#777;text-align:center}
+.badge-row{display:flex;gap:7px;overflow-x:auto;padding:3px 0 8px}
+.badge{white-space:nowrap;background:#f0edff;color:#5134bb;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:700}
+.today-card{background:linear-gradient(135deg,#fff,#f4f0ff);border:1px solid #ded5fb}
+.today-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.today-title{font-size:20px;font-weight:850}
+.today-recommend{font-size:13px;color:#6246c6;margin-top:5px}
+.today-select{width:100%;margin-top:12px;min-height:50px;border:1px solid #cfc8e8;border-radius:11px;padding:0 12px;background:#fff;font-size:16px}
+.today-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.today-actions button{width:100%}
+.day-preview{margin-top:12px;padding:14px;border-radius:13px;background:#fff;border:1px solid #ded8ef}
+.day-preview-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.day-preview-title{font-size:19px;font-weight:850;line-height:1.35}
+.day-preview-category{font-size:12px;font-weight:800;border-radius:999px;padding:5px 9px;white-space:nowrap}
+.cat-daily{background:#e9f2ff;color:#245da8}
+.cat-drama{background:#ffe9f2;color:#a72561}
+.cat-restaurant{background:#fff0d8;color:#975a00}
+.cat-company{background:#e8f7ee;color:#21673f}
+.day-preview-phrase{margin-top:10px;padding:11px;background:#f7f7fa;border-radius:10px}
+.day-preview-ko{font-size:19px;font-weight:800}
+.day-preview-read{font-size:14px;color:#5836c7;margin-top:3px}
+.day-preview-jp{font-size:14px;color:#555;margin-top:3px}
+.day-list-hint{font-size:12px;color:#777;margin-top:7px}
+@media(max-width:380px){.hero-panel:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.11);right:-55px;top:-70px}
+.hero-panel:after{content:"";position:absolute;width:115px;height:115px;border-radius:50%;background:rgba(255,255,255,.08);left:-35px;bottom:-58px}
+.section-label{font-size:13px;color:#6f6787;font-weight:800;letter-spacing:.04em;margin:18px 2px 6px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.quick-card{background:#fff;border:1px solid #e5def7;border-radius:14px;padding:13px;text-align:left;min-height:92px}
+.quick-card-title{font-weight:850;font-size:15px}
+.quick-card-copy{font-size:12px;color:#777;line-height:1.45;margin-top:4px}
+.quick-icon{font-size:23px;margin-bottom:5px}
+.level-dot.active{background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.18)}
+@media(max-width:420px){.quick-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.today-actions{grid-template-columns:1fr}}
+@media(min-width:650px){.dashboard{grid-template-columns:repeat(4,1fr)}}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}.wrap{padding:0 14px}}
+
+.focus-card:after{
+  content:"";
+  position:absolute;
+  width:140px;height:140px;border-radius:50%;
+  right:-65px;bottom:-80px;
+  background:rgba(255,255,255,.09);
+}
+.focus-eyebrow{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+  opacity:.78;
+}
+.focus-title{
+  font-size:24px;
+  font-weight:900;
+  line-height:1.35;
+  margin-top:6px;
+  position:relative;
+  z-index:1;
+}
+.focus-copy{
+  margin-top:7px;
+  font-size:14px;
+  line-height:1.65;
+  opacity:.92;
+  position:relative;
+  z-index:1;
+}
+.focus-actions button{width:100%}
+.section-label{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+  color:#766d8c;
+  margin:18px 4px 8px;
+}
+.card{
+  border:1px solid rgba(91,66,181,.08);
+  box-shadow:0 10px 28px rgba(47,35,89,.08);
+}
+.dashboard{gap:9px}
+.metric{
+  background:#fff;
+  border:1px solid #ece8f6;
+  box-shadow:none;
+  border-radius:15px;
+}
+.metric-label{font-size:12px;color:#807892;font-weight:700}
+.metric-value{font-size:27px;color:#4c2db5}
+.metric-sub{color:#8b8498}
+.progress{
+  height:8px;
+  background:#eceaf2;
+}
+.bar{
+  background:linear-gradient(90deg,#5b38cc,#8b6ce8);
+}
+.motivation{
+  margin-top:12px;
+  border-radius:15px;
+  box-shadow:none;
+}
+.today-card{
+  background:#fff;
+  border:1px solid #e9e4f5;
+  box-shadow:0 10px 26px rgba(57,42,107,.07);
+}
+.day-preview{
+  background:#faf9fd;
+  border:1px solid #ebe7f4;
+}
+.today-select{
+  border:1px solid #ddd7ec;
+}
+.day{
+  border:1px solid #e8e4ef;
+  box-shadow:none;
+  border-radius:14px;
+}
+.day.current{
+  outline:2px solid #7b5ee0;
+  box-shadow:0 7px 18px rgba(88,54,199,.12);
+}
+.tabs .tab{
+  background:#f0eef5;
+}
+.tabs .tab.active{
+  background:linear-gradient(135deg,#5734c2,#7457de);
+}
+@media(max-width:420px){
+    .focus-title{font-size:22px}
+}
+
+
+body{
+  line-height:1.65;
+}
+header h1{
+  line-height:1.35;
+  margin-bottom:10px;
+}
+header p,
+.hero-copy,
+.focus-copy{
+  line-height:1.7;
+}
+.wrap{
+  padding-bottom:34px;
+}
+.card{
+  padding:18px;
+  margin-bottom:16px;
+}
+.section-label{
+  margin-top:24px;
+  margin-bottom:10px;
+  line-height:1.4;
+}
+.metric{
+  padding:15px;
+  min-height:96px;
+}
+.metric-label{
+  line-height:1.45;
+}
+.metric-value{
+  margin-top:7px;
+  line-height:1.15;
+}
+.metric-sub{
+  margin-top:7px;
+  line-height:1.45;
+}
+.motivation-title{
+  margin-bottom:7px;
+}
+.motivation-message{
+  line-height:1.7;
+}
+.today-title{
+  line-height:1.4;
+}
+.today-recommend{
+  margin-top:8px;
+  line-height:1.5;
+}
+.today-select{
+  margin-top:14px;
+}
+.day-preview{
+  margin-top:14px;
+  padding:16px;
+}
+.day-preview-title{
+  margin-top:4px;
+  line-height:1.45;
+}
+.day-preview-phrase{
+  margin-top:13px;
+  padding:13px;
+}
+.day-preview-ko{
+  line-height:1.5;
+}
+.day-preview-read,
+.day-preview-jp{
+  margin-top:5px;
+  line-height:1.55;
+}
+.day-list-hint{
+  margin-top:9px;
+  line-height:1.55;
+}
+.today-actions{
+  margin-top:14px;
+  gap:10px;
+}
+.grid{
+  gap:12px;
+}
+.day{
+  padding:16px;
+  min-height:96px;
+}
+.day .title{
+  line-height:1.45;
+}
+.tabs{
+  gap:10px;
+  margin-bottom:14px;
+}
+.tab{
+  min-height:54px;
+  line-height:1.35;
+}
+.lesson-item{
+  padding:16px;
+  margin-bottom:12px;
+}
+.ko{
+  line-height:1.45;
+}
+.read,
+.jp,
+.grammar{
+  line-height:1.65;
+}
+.audio{
+  margin-top:12px;
+}
+button{
+  line-height:1.35;
+}
+
+
+/* Focus card spacing refinement */
+.focus-eyebrow{
+  display:block !important;
+  margin-bottom: 8px !important;
+  font-size: 12px !important;
+  letter-spacing: .10em !important;
+  line-height: 1.5 !important;
+  color: #766d8c !important;
+}
+.focus-title{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  font-size: 22px !important;
+  line-height: 1.5 !important;
+  color:#1f1b2d !important;
+}
+.focus-copy{
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+  color:#4c465d !important;
+}
+.focus-actions button{
+  min-height: 54px !important;
+}
+@media(max-width:420px){
+    .focus-title{
+    font-size: 20px !important;
+    line-height: 1.55 !important;
+  }
+  .focus-copy{
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+}
+
+
+
+/* Historical epic / Warring States inspired theme */
+:root{
+  --ink:#171512;
+  --charcoal:#24211c;
+  --iron:#34302a;
+  --paper:#efe4cf;
+  --paper-deep:#dfceb0;
+  --bronze:#b98a3d;
+  --gold:#d3aa5a;
+  --vermilion:#8e2f24;
+  --vermilion-dark:#682019;
+  --line:#8e7653;
+  --muted:#6c6255;
+}
+
+html,body{
+  background:
+    radial-gradient(circle at 20% 0%, rgba(185,138,61,.08), transparent 24%),
+    linear-gradient(180deg,#d8d0c2 0%,#eee8dc 20%,#e7dece 100%) !important;
+  color:var(--ink) !important;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif !important;
+}
+
+header{
+  background:
+    linear-gradient(rgba(18,16,13,.88),rgba(28,24,19,.94)),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px) !important;
+  border-bottom:3px solid var(--bronze) !important;
+  box-shadow:0 10px 28px rgba(20,17,13,.28) !important;
+  color:#f7edd9 !important;
+}
+
+header h1{
+  color:#f7edd9 !important;
+  text-shadow:0 2px 0 #000,0 0 14px rgba(211,170,90,.18) !important;
+  letter-spacing:.02em !important;
+}
+
+header p{
+  color:#d9c6a2 !important;
+}
+
+.wrap{
+  max-width:860px !important;
+}
+
+.card,
+.today-card,
+.day-preview,
+.metric,
+.lesson-item{
+  background:
+    linear-gradient(145deg,rgba(255,250,240,.95),rgba(235,222,198,.96)) !important;
+  border:1px solid rgba(108,82,44,.32) !important;
+  box-shadow:
+    0 10px 24px rgba(42,32,20,.10),
+    inset 0 1px 0 rgba(255,255,255,.7) !important;
+}
+
+.card,
+.today-card{
+  border-radius:8px !important;
+}
+
+.section-label{
+  color:var(--charcoal) !important;
+  letter-spacing:.12em !important;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif !important;
+}
+
+.metric{
+  border-left:4px solid var(--bronze) !important;
+  border-radius:6px !important;
+}
+
+.metric-label{
+  color:#6d5b43 !important;
+}
+
+.metric-value{
+  color:var(--vermilion) !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.6) !important;
+}
+
+.progress{
+  height:10px !important;
+  background:#c9b99e !important;
+  border:1px solid #9b8766 !important;
+  border-radius:2px !important;
+}
+
+.bar{
+  background:
+    linear-gradient(90deg,var(--vermilion-dark),var(--vermilion),#bd5a42) !important;
+  border-radius:1px !important;
+}
+
+.motivation{
+  background:
+    linear-gradient(135deg,#2b2721,#3c352b) !important;
+  color:#f5e7cc !important;
+  border:1px solid var(--bronze) !important;
+  border-radius:6px !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05) !important;
+}
+
+.motivation-title{
+  color:var(--gold) !important;
+}
+
+.today-card{
+  position:relative;
+  overflow:hidden;
+}
+
+.today-card:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:6px;
+  background:linear-gradient(var(--vermilion),var(--vermilion-dark));
+}
+
+.today-title{
+  color:var(--ink) !important;
+}
+
+.today-recommend{
+  color:var(--vermilion) !important;
+  font-weight:800 !important;
+}
+
+.badge,
+.day-preview-category{
+  background:#2c2822 !important;
+  color:var(--gold) !important;
+  border:1px solid var(--bronze) !important;
+  border-radius:3px !important;
+}
+
+.today-select{
+  background:#f7efdf !important;
+  border:1px solid #9a8059 !important;
+  border-radius:4px !important;
+  color:var(--ink) !important;
+}
+
+.day-preview{
+  border-radius:5px !important;
+  background:
+    linear-gradient(135deg,#f3e7d1,#e6d4b5) !important;
+}
+
+.day-preview-phrase{
+  background:rgba(255,250,240,.72) !important;
+  border-left:4px solid var(--vermilion) !important;
+  border-radius:2px !important;
+}
+
+.day-preview-read{
+  color:var(--vermilion) !important;
+}
+
+button,
+.tab,
+.audio{
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif !important;
+  border-radius:4px !important;
+  border:1px solid #6f5d43 !important;
+  box-shadow:
+    0 3px 0 #3b3124,
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+  transition:transform .08s ease,box-shadow .08s ease,filter .15s ease !important;
+}
+
+button:active,
+.tab:active,
+.audio:active{
+  transform:translateY(2px) !important;
+  box-shadow:
+    0 1px 0 #3b3124,
+    inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+
+.primary,
+.tab.active{
+  background:
+    linear-gradient(180deg,#a84334 0%,#7f281f 100%) !important;
+  color:#fff7e6 !important;
+  border-color:#5f1c17 !important;
+}
+
+.tab,
+.today-actions button:not(.primary),
+button:not(.primary){
+  background:
+    linear-gradient(180deg,#efe3cd 0%,#d8c3a1 100%) !important;
+  color:#2b261f !important;
+}
+
+.audio{
+  background:
+    linear-gradient(180deg,#3a352e 0%,#25211c 100%) !important;
+  color:#f4dfb8 !important;
+  border-color:#15120f !important;
+}
+
+.day{
+  background:
+    linear-gradient(145deg,#f2e8d6,#ddc9a9) !important;
+  border:1px solid #9d835c !important;
+  border-radius:5px !important;
+  box-shadow:0 5px 12px rgba(47,35,22,.08) !important;
+}
+
+.day.current{
+  outline:2px solid var(--vermilion) !important;
+  box-shadow:0 0 0 4px rgba(142,47,36,.10),0 8px 18px rgba(51,36,20,.12) !important;
+}
+
+.day.locked{
+  filter:grayscale(.75) sepia(.15) !important;
+  opacity:.55 !important;
+}
+
+.day .day-number,
+.day strong{
+  color:var(--vermilion) !important;
+}
+
+.tabs{
+  border-bottom:1px solid #9c8664 !important;
+  padding-bottom:8px !important;
+}
+
+.ko{
+  color:#201c17 !important;
+}
+
+.read{
+  color:var(--vermilion) !important;
+}
+
+.jp{
+  color:#4a4136 !important;
+}
+
+.grammar{
+  background:#e3d2b7 !important;
+  border-left:3px solid var(--bronze) !important;
+  border-radius:2px !important;
+  color:#4a3c2c !important;
+}
+
+.chart-bars{
+  border-bottom:1px solid #8f7958 !important;
+}
+
+.chart-bar{
+  background:linear-gradient(#b78942,#7f4b27) !important;
+  border-radius:2px 2px 0 0 !important;
+}
+
+.badge-row .badge{
+  box-shadow:none !important;
+}
+
+@media(max-width:520px){
+  header h1{font-size:26px !important}
+  .metric-value{font-size:26px !important}
+  .today-card,.card{padding:16px !important}
+}
+
 </style>
+
+<style id="final-historical-theme">
+:root{
+  --ink:#171512;
+  --charcoal:#24211c;
+  --paper:#efe4cf;
+  --paper-deep:#dfceb0;
+  --bronze:#b98a3d;
+  --gold:#d3aa5a;
+  --vermilion:#8e2f24;
+  --vermilion-dark:#682019;
+}
+
+html,body{
+  background:
+    radial-gradient(circle at 20% 0%, rgba(185,138,61,.08), transparent 24%),
+    linear-gradient(180deg,#d8d0c2 0%,#eee8dc 20%,#e7dece 100%) !important;
+  color:var(--ink) !important;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif !important;
+}
+
+header{
+  background:
+    linear-gradient(rgba(18,16,13,.90),rgba(28,24,19,.96)),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px) !important;
+  border-bottom:3px solid var(--bronze) !important;
+  box-shadow:0 10px 28px rgba(20,17,13,.28) !important;
+  color:#f7edd9 !important;
+}
+
+header h1{
+  color:#f7edd9 !important;
+  text-shadow:0 2px 0 #000,0 0 14px rgba(211,170,90,.18) !important;
+}
+
+header p{color:#d9c6a2 !important;}
+
+.card,.today-card,.day-preview,.metric,.lesson-item{
+  background:linear-gradient(145deg,rgba(255,250,240,.97),rgba(235,222,198,.97)) !important;
+  border:1px solid rgba(108,82,44,.34) !important;
+  box-shadow:0 10px 24px rgba(42,32,20,.10),inset 0 1px 0 rgba(255,255,255,.7) !important;
+}
+
+.card,.today-card{border-radius:8px !important;}
+
+.metric{
+  border-left:4px solid var(--bronze) !important;
+  border-radius:6px !important;
+}
+
+.metric-label{color:#6d5b43 !important;}
+.metric-value{color:var(--vermilion) !important;}
+
+.progress{
+  background:#c9b99e !important;
+  border:1px solid #9b8766 !important;
+  border-radius:2px !important;
+}
+
+.bar{
+  background:linear-gradient(90deg,var(--vermilion-dark),var(--vermilion),#bd5a42) !important;
+  border-radius:1px !important;
+}
+
+.motivation{
+  background:linear-gradient(135deg,#2b2721,#3c352b) !important;
+  color:#f5e7cc !important;
+  border:1px solid var(--bronze) !important;
+  border-radius:6px !important;
+}
+.motivation-title{color:var(--gold) !important;}
+
+.today-card{
+  position:relative !important;
+  overflow:hidden !important;
+}
+.today-card:before{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;top:0 !important;bottom:0 !important;
+  width:6px !important;
+  background:linear-gradient(var(--vermilion),var(--vermilion-dark)) !important;
+}
+
+.today-recommend{color:var(--vermilion) !important;}
+
+.badge,.day-preview-category{
+  background:#2c2822 !important;
+  color:var(--gold) !important;
+  border:1px solid var(--bronze) !important;
+  border-radius:3px !important;
+}
+
+.today-select{
+  background:#f7efdf !important;
+  border:1px solid #9a8059 !important;
+  border-radius:4px !important;
+  color:var(--ink) !important;
+}
+
+.day-preview{
+  background:linear-gradient(135deg,#f3e7d1,#e6d4b5) !important;
+  border-radius:5px !important;
+}
+.day-preview-phrase{
+  background:rgba(255,250,240,.72) !important;
+  border-left:4px solid var(--vermilion) !important;
+  border-radius:2px !important;
+}
+.day-preview-read{color:var(--vermilion) !important;}
+
+button,.tab,.audio{
+  border-radius:4px !important;
+  border:1px solid #6f5d43 !important;
+  box-shadow:0 3px 0 #3b3124,inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+button:active,.tab:active,.audio:active{
+  transform:translateY(2px) !important;
+  box-shadow:0 1px 0 #3b3124,inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+
+.primary,.tab.active{
+  background:linear-gradient(180deg,#a84334 0%,#7f281f 100%) !important;
+  color:#fff7e6 !important;
+  border-color:#5f1c17 !important;
+}
+
+.tab,.today-actions button:not(.primary),button:not(.primary){
+  background:linear-gradient(180deg,#efe3cd 0%,#d8c3a1 100%) !important;
+  color:#2b261f !important;
+}
+
+.audio{
+  background:linear-gradient(180deg,#3a352e 0%,#25211c 100%) !important;
+  color:#f4dfb8 !important;
+  border-color:#15120f !important;
+}
+
+.day{
+  background:linear-gradient(145deg,#f2e8d6,#ddc9a9) !important;
+  border:1px solid #9d835c !important;
+  border-radius:5px !important;
+  box-shadow:0 5px 12px rgba(47,35,22,.08) !important;
+}
+
+.day.current{
+  outline:2px solid var(--vermilion) !important;
+  box-shadow:0 0 0 4px rgba(142,47,36,.10),0 8px 18px rgba(51,36,20,.12) !important;
+}
+
+.day.locked{
+  filter:grayscale(.75) sepia(.15) !important;
+  opacity:.55 !important;
+}
+
+.day .day-number,.day strong{color:var(--vermilion) !important;}
+.read{color:var(--vermilion) !important;}
+.grammar{
+  background:#e3d2b7 !important;
+  border-left:3px solid var(--bronze) !important;
+  color:#4a3c2c !important;
+}
+
+.chart-bar{
+  background:linear-gradient(#b78942,#7f4b27) !important;
+  border-radius:2px 2px 0 0 !important;
+}
+</style>
+
 </head>
 <body>
 <header>
 <div class="wrap">
-<h1 style="margin:0;font-size:25px">キム秘書で学ぶ 30日韓国語</h1>
-<div style="margin-top:6px">3日分を全問正解すると、次の3日を解放</div>
+<h1 style="margin:0;font-size:25px">韓国ドラマ・接客・会社で役立つ 30日韓国語日常会話特訓アプリ</h1>
+<div style="margin-top:6px">Day1〜30収録｜達成度・学習時間・初回正解率も自動記録</div>
 </div>
 </header>
 
 <main class="wrap">
+
+
 <div class="card">
-<b id="status">読み込み中</b>
+<b id="status">学びの進み具合</b>
 <div class="progress" style="margin-top:10px"><div class="bar" id="bar"></div></div>
+<div class="dashboard">
+  <div class="metric"><div class="metric-label">達成度</div><div class="metric-value" id="metricProgress">0%</div><div class="metric-sub" id="metricLessons">0 / 30 Day</div></div>
+  <div class="metric"><div class="metric-label">累計学習時間</div><div class="metric-value" id="metricTime">0分</div><div class="metric-sub">この端末で記録</div></div>
+  <div class="metric"><div class="metric-label">初回正解率</div><div class="metric-value" id="metricAccuracy">—</div><div class="metric-sub" id="metricTests">テスト未実施</div></div>
+  <div class="metric"><div class="metric-label">連続学習</div><div class="metric-value" id="metricStreak">0日</div><div class="metric-sub" id="metricToday">今日も少し進めよう</div></div>
+</div>
+<div class="motivation motivation-default" id="motivation">
+  <div class="motivation-title" id="motivationTitle">今日のひとこと</div>
+  <div class="motivation-message" id="motivationMessage">まずは5分。今日の1問が、ドラマの聞き取りにつながります。</div>
+</div>
+<div class="badge-row" id="badgeRow"></div>
+<div class="chart-wrap">
+  <b>初回正解率の推移</b>
+  <div id="accuracyChart" style="margin-top:8px"></div>
+</div>
 </div>
 
+<div class="card today-card">
+  <div class="today-head">
+    <div>
+      <div class="today-title">今日学ぶDayを選ぶ</div>
+      <div class="today-recommend" id="todayRecommendation">次に進むDay</div>
+    </div>
+    <div class="badge" id="todayBadge">SELECT</div>
+  </div>
+  <select id="todayDaySelect" class="today-select" aria-label="今日学習するDay"></select>
+  <div class="day-preview" id="todayDayPreview"></div>
+  <div class="day-list-hint">Dayを選ぶと、タイトルと代表フレーズを確認できます。</div>
+  <div class="today-actions">
+    <button type="button" class="primary" id="startTodayBtn">選んだDayを開く</button>
+    <button type="button" class="tab" id="startRecommendedBtn">次のDayを開く</button>
+  </div>
+</div>
+
+<div class="section-label">Day一覧</div>
 <div class="grid" id="dayGrid"></div>
 
 <div class="card">
@@ -76,25 +869,205 @@ button:active{transform:scale(.985)}
 
 <script>
 "use strict";
-const DAYS=[{"title": "あいさつと基本返答", "words": [["안녕하세요", "アンニョンハセヨ", "こんにちは"], ["감사합니다", "カムサハムニダ", "ありがとうございます"], ["죄송합니다", "チェソンハムニダ", "申し訳ありません"], ["괜찮아요", "クェンチャナヨ", "大丈夫です"], ["네", "ネ", "はい"], ["아니요", "アニヨ", "いいえ"], ["맞아요", "マジャヨ", "合っています"], ["아니에요", "アニエヨ", "違います"], ["알겠어요", "アルゲッソヨ", "分かりました"], ["모르겠어요", "モルゲッソヨ", "分かりません"]], "sentences": [["안녕하세요. 처음 뵙겠습니다.", "アンニョンハセヨ。チョウム ペプケッスムニダ", "こんにちは。初めてお目にかかります。", "처음＝初めて／뵙겠습니다＝お目にかかります（만나다の謙譲表現）"], ["정말 감사합니다.", "チョンマル カムサハムニダ", "本当にありがとうございます。", "정말＝本当に／감사합니다＝ありがとうございます（丁寧）"], ["죄송하지만 다시 말해 주세요.", "チェソンハジマン タシ マレ ジュセヨ", "申し訳ありませんが、もう一度言ってください。", "-지만＝〜ですが／-아・어 주세요＝〜してください"], ["괜찮아요. 걱정하지 마세요.", "クェンチャナヨ。コクチョンハジ マセヨ", "大丈夫です。心配しないでください。", "-지 마세요＝〜しないでください"], ["네, 알겠어요.", "ネ、アルゲッソヨ", "はい、分かりました。", "알다＝分かる・知る／알겠어요＝分かりました"]]}, {"title": "自己紹介と人", "words": [["저", "チョ", "私"], ["당신", "タンシン", "あなた"], ["사람", "サラム", "人"], ["이름", "イルム", "名前"], ["회사", "フェサ", "会社"], ["직원", "チグォン", "社員"], ["친구", "チング", "友達"], ["가족", "カジョク", "家族"], ["누구", "ヌグ", "誰"], ["처음", "チョウム", "初めて"]], "sentences": [["저는 김미소예요.", "チョヌン キムミソエヨ", "私はキム・ミソです。", "저는＝私は／母音で終わる名詞＋예요＝〜です"], ["이름이 뭐예요?", "イルミ ムォエヨ", "名前は何ですか？", "이름이＝名前が／뭐예요?＝何ですか？"], ["그 사람은 누구예요?", "ク サラムン ヌグエヨ", "その人は誰ですか？", "그＝その／누구＝誰"], ["저는 이 회사 직원이에요.", "チョヌン イ フェサ チグォニエヨ", "私はこの会社の社員です。", "子音で終わる名詞＋이에요＝〜です"], ["처음 만났지만 반가워요.", "チョウム マンナッチマン パンガウォヨ", "初めて会いましたが、うれしいです。", "-았・었지만＝〜しましたが／반가워요＝会えてうれしいです"]]}, {"title": "疑問詞と日常会話", "words": [["뭐", "ムォ", "何"], ["왜", "ウェ", "なぜ"], ["어디", "オディ", "どこ"], ["언제", "オンジェ", "いつ"], ["어떻게", "オットケ", "どう"], ["지금", "チグム", "今"], ["오늘", "オヌル", "今日"], ["내일", "ネイル", "明日"], ["같이", "カチ", "一緒に"], ["정말", "チョンマル", "本当に"]], "sentences": [["지금 뭐 해요?", "チグム ムォ ヘヨ", "今、何をしていますか？", "뭐＝何／하다→해요＝します"], ["왜 그렇게 생각해요?", "ウェ クロッケ センガケヨ", "なぜ、そのように考えるのですか？", "왜＝なぜ／그렇게＝そのように"], ["오늘 어디에 가요?", "オヌル オディエ カヨ", "今日はどこへ行きますか？", "場所＋에 가요＝〜へ行きます"], ["언제 만날까요?", "オンジェ マンナルッカヨ", "いつ会いましょうか？", "-ㄹ・을까요?＝〜しましょうか？"], ["내일 같이 가요.", "ネイル カチ カヨ", "明日、一緒に行きましょう。", "같이＝一緒に／해요体は勧誘にも使える"]]}, {"title": "感情を伝える", "words": [["좋아요", "チョアヨ", "いいです／好きです"], ["싫어요", "シロヨ", "嫌です"], ["행복해요", "ヘンボケヨ", "幸せです"], ["기뻐요", "キッポヨ", "うれしいです"], ["슬퍼요", "スルポヨ", "悲しいです"], ["무서워요", "ムソウォヨ", "怖いです"], ["화가 나요", "ファガ ナヨ", "腹が立ちます"], ["걱정돼요", "コクチョンデヨ", "心配です"], ["피곤해요", "ピゴネヨ", "疲れています"], ["괜찮아요", "クェンチャナヨ", "大丈夫です"]], "sentences": [["오늘은 정말 행복해요.", "オヌルン チョンマル ヘンボケヨ", "今日は本当に幸せです。", "오늘은＝今日は／정말＝本当に"], ["당신을 만나서 기뻐요.", "タンシヌル マンナソ キッポヨ", "あなたに会えてうれしいです。", "-아・어서＝〜して、〜なので"], ["왜 이렇게 걱정돼요?", "ウェ イロッケ コクチョンデヨ", "なぜ、こんなに心配なのですか？", "이렇게＝このように、こんなに"], ["저는 하나도 안 무서워요.", "チョヌン ハナド アン ムソウォヨ", "私は少しも怖くありません。", "하나도 안＝少しも〜ない"], ["피곤하지만 괜찮아요.", "ピゴナジマン クェンチャナヨ", "疲れていますが、大丈夫です。", "-지만＝〜ですが"]]}, {"title": "恋愛と気持ち", "words": [["좋아하다", "チョアハダ", "好きだ"], ["사랑하다", "サランハダ", "愛する"], ["보고 싶다", "ポゴ シプタ", "会いたい"], ["기다리다", "キダリダ", "待つ"], ["만나다", "マンナダ", "会う"], ["설레다", "ソルレダ", "ときめく"], ["고백하다", "コベカダ", "告白する"], ["약속", "ヤクソク", "約束"], ["진심", "チンシム", "本心"], ["마음", "マウム", "心／気持ち"]], "sentences": [["저는 당신을 좋아해요.", "チョヌン タンシヌル チョアヘヨ", "私はあなたが好きです。", "人＋을・를 좋아해요＝人が好きです"], ["많이 보고 싶었어요.", "マニ ポゴ シポッソヨ", "とても会いたかったです。", "-고 싶다＝〜したい／-었어요＝過去"], ["제 마음은 진심이에요.", "チェ マウムン チンシミエヨ", "私の気持ちは本心です。", "제＝私の（저의の縮約）"], ["언제부터 저를 좋아했어요?", "オンジェブト チョルル チョアヘッソヨ", "いつから私を好きだったのですか？", "-부터＝〜から"], ["앞으로도 제 옆에 있어 주세요.", "アプロド チェ ヨペ イッソ ジュセヨ", "これからも私のそばにいてください。", "앞으로도＝これからも／-아・어 주세요＝〜してください"]]}, {"title": "会社と秘書業務", "words": [["회사", "フェサ", "会社"], ["비서", "ピソ", "秘書"], ["사장님", "サジャンニム", "社長"], ["회의", "フェイ", "会議"], ["업무", "オンム", "業務"], ["보고하다", "ポゴハダ", "報告する"], ["자료", "チャリョ", "資料"], ["일정", "イルチョン", "日程"], ["출근하다", "チュルグナダ", "出勤する"], ["퇴근하다", "トェグナダ", "退勤する"]], "sentences": [["오늘 회의는 열 시에 시작합니다.", "オヌル フェイヌン ヨル シエ シジャカムニダ", "今日の会議は10時に始まります。", "時刻＋에＝〜時に／-ㅂ니다＝かしこまった丁寧形"], ["회의 자료를 준비했어요.", "フェイ チャリョルル チュンビヘッソヨ", "会議資料を準備しました。", "名詞＋을・를＝〜を／준비하다＝準備する"], ["사장님께 일정을 보고할게요.", "サジャンニムッケ イルチョンウル ポゴハルケヨ", "社長に日程を報告しますね。", "께＝〜に（敬語）／-ㄹ・을게요＝〜しますね"], ["오늘은 야근하지 마세요.", "オヌルン ヤグナジ マセヨ", "今日は残業しないでください。", "야근하다＝残業する／-지 마세요＝〜しないでください"], ["업무가 끝나면 같이 퇴근해요.", "オンムガ クンナミョン カチ トェグネヨ", "仕事が終わったら、一緒に退勤しましょう。", "-면＝〜したら／같이＝一緒に"]]}, {"title": "電話", "words": [["전화", "チョナ", "電話"], ["여보세요", "ヨボセヨ", "もしもし"], ["연락", "ヨルラク", "連絡"], ["메시지", "メシジ", "メッセージ"], ["받다", "パッタ", "受ける"], ["끊다", "クンタ", "切る"], ["통화", "トンファ", "通話"], ["잠시", "チャムシ", "少しの間"], ["나중에", "ナジュンエ", "後で"], ["번호", "ポノ", "番号"]], "sentences": [["전화에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "電話について話してください。"], ["저는 여보세요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私はもしもしが好きです。"], ["연락이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "連絡が必要です。"], ["오늘 메시지을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、メッセージをしました。"], ["같이 받다에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に受けるについて話しましょう。"]]}, {"title": "食事", "words": [["밥", "パプ", "ご飯"], ["먹다", "モクタ", "食べる"], ["마시다", "マシダ", "飲む"], ["맛있어요", "マシッソヨ", "おいしいです"], ["배고파요", "ペゴパヨ", "お腹がすきました"], ["식사", "シクサ", "食事"], ["메뉴", "メニュ", "メニュー"], ["물", "ムル", "水"], ["커피", "コピ", "コーヒー"], ["잘 먹겠습니다", "チャル モッケッスムニダ", "いただきます"]], "sentences": [["밥에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "ご飯について話してください。"], ["저는 먹다을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は食べるが好きです。"], ["마시다이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "飲むが必要です。"], ["오늘 맛있어요을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、おいしいですをしました。"], ["같이 배고파요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にお腹がすきましたについて話しましょう。"]]}, {"title": "買い物", "words": [["얼마예요", "オルマエヨ", "いくらですか"], ["비싸요", "ピッサヨ", "高いです"], ["싸요", "サヨ", "安いです"], ["사다", "サダ", "買う"], ["팔다", "パルダ", "売る"], ["옷", "オッ", "服"], ["선물", "ソンムル", "プレゼント"], ["카드", "カドゥ", "カード"], ["현금", "ヒョングム", "現金"], ["필요하다", "ピリョハダ", "必要だ"]], "sentences": [["얼마예요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "いくらですかについて話してください。"], ["저는 비싸요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は高いですが好きです。"], ["싸요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "安いですが必要です。"], ["오늘 사다을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、買うをしました。"], ["같이 팔다에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に売るについて話しましょう。"]]}, {"title": "移動", "words": [["가다", "カダ", "行く"], ["오다", "オダ", "来る"], ["타다", "タダ", "乗る"], ["내리다", "ネリダ", "降りる"], ["택시", "テクシ", "タクシー"], ["지하철", "チハチョル", "地下鉄"], ["버스", "ポス", "バス"], ["길", "キル", "道"], ["왼쪽", "ウェンチョク", "左"], ["오른쪽", "オルンチョク", "右"]], "sentences": [["가다에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "行くについて話してください。"], ["저는 오다을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は来るが好きです。"], ["타다이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "乗るが必要です。"], ["오늘 내리다을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、降りるをしました。"], ["같이 택시에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にタクシーについて話しましょう。"]]}, {"title": "時間", "words": [["시간", "シガン", "時間"], ["몇 시", "ミョッ シ", "何時"], ["아침", "アチム", "朝"], ["점심", "チョムシム", "昼"], ["저녁", "チョニョク", "夕方"], ["늦다", "ヌッタ", "遅い"], ["일찍", "イルチク", "早く"], ["먼저", "モンジョ", "先に"], ["곧", "コッ", "すぐ"], ["동안", "トンアン", "間"]], "sentences": [["시간에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "時間について話してください。"], ["저는 몇 시을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は何時が好きです。"], ["아침이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "朝が必要です。"], ["오늘 점심을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、昼をしました。"], ["같이 저녁에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に夕方について話しましょう。"]]}, {"title": "依頼", "words": [["부탁", "プタク", "お願い"], ["도와주세요", "トワジュセヨ", "助けてください"], ["해 주세요", "ヘ ジュセヨ", "してください"], ["잠깐", "チャムッカン", "少し"], ["기다려 주세요", "キダリョ ジュセヨ", "待ってください"], ["보여 주세요", "ポヨ ジュセヨ", "見せてください"], ["말해 주세요", "マレ ジュセヨ", "言ってください"], ["천천히", "チョンチョニ", "ゆっくり"], ["다시", "タシ", "もう一度"], ["함께", "ハムッケ", "一緒に"]], "sentences": [["부탁에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "お願いについて話してください。"], ["저는 도와주세요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は助けてくださいが好きです。"], ["해 주세요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "してくださいが必要です。"], ["오늘 잠깐을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、少しをしました。"], ["같이 기다려 주세요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に待ってくださいについて話しましょう。"]]}, {"title": "過去と未来", "words": [["갔어요", "カッソヨ", "行きました"], ["왔어요", "ワッソヨ", "来ました"], ["했어요", "ヘッソヨ", "しました"], ["먹었어요", "モゴッソヨ", "食べました"], ["봤어요", "ポッソヨ", "見ました"], ["갈 거예요", "カル コエヨ", "行く予定です"], ["할 거예요", "ハル コエヨ", "する予定です"], ["기다릴게요", "キダリルケヨ", "待ちます"], ["다음", "タウム", "次"], ["꼭", "コッ", "必ず"]], "sentences": [["갔어요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "行きましたについて話してください。"], ["저는 왔어요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は来ましたが好きです。"], ["했어요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "しましたが必要です。"], ["오늘 먹었어요을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、食べましたをしました。"], ["같이 봤어요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に見ましたについて話しましょう。"]]}, {"title": "家族", "words": [["가족", "カジョク", "家族"], ["아버지", "アボジ", "父"], ["어머니", "オモニ", "母"], ["오빠", "オッパ", "兄／年上の男性"], ["언니", "オンニ", "姉／年上の女性"], ["동생", "トンセン", "弟・妹"], ["부모님", "プモニム", "両親"], ["집", "チプ", "家"], ["함께", "ハムッケ", "一緒に"], ["사랑", "サラン", "愛"]], "sentences": [["가족에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "家族について話してください。"], ["저는 아버지을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は父が好きです。"], ["어머니이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "母が必要です。"], ["오늘 오빠을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、兄／年上の男性をしました。"], ["같이 언니에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に姉／年上の女性について話しましょう。"]]}, {"title": "旅行", "words": [["여행", "ヨヘン", "旅行"], ["공항", "コンハン", "空港"], ["비행기", "ピヘンギ", "飛行機"], ["표", "ピョ", "切符"], ["여권", "ヨグォン", "パスポート"], ["짐", "チム", "荷物"], ["출발", "チュルバル", "出発"], ["도착", "トチャク", "到着"], ["예약", "イェヤク", "予約"], ["사진", "サジン", "写真"]], "sentences": [["여행에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "旅行について話してください。"], ["저는 공항을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は空港が好きです。"], ["비행기이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "飛行機が必要です。"], ["오늘 표을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、切符をしました。"], ["같이 여권에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にパスポートについて話しましょう。"]]}, {"title": "ホテル", "words": [["호텔", "ホテル", "ホテル"], ["방", "パン", "部屋"], ["예약", "イェヤク", "予約"], ["체크인", "チェクイン", "チェックイン"], ["체크아웃", "チェクアウトゥ", "チェックアウト"], ["열쇠", "ヨルセ", "鍵"], ["수건", "スゴン", "タオル"], ["아침 식사", "アチム シクサ", "朝食"], ["도와주세요", "トワジュセヨ", "助けてください"], ["편하다", "ピョナダ", "快適だ"]], "sentences": [["호텔에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "ホテルについて話してください。"], ["저는 방을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は部屋が好きです。"], ["예약이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "予約が必要です。"], ["오늘 체크인을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、チェックインをしました。"], ["같이 체크아웃에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にチェックアウトについて話しましょう。"]]}, {"title": "レストラン", "words": [["레스토랑", "レストラン", "レストラン"], ["예약", "イェヤク", "予約"], ["메뉴", "メニュ", "メニュー"], ["추천", "チュチョン", "おすすめ"], ["주문", "チュムン", "注文"], ["계산", "ケサン", "会計"], ["맛", "マッ", "味"], ["서비스", "ソビス", "サービス"], ["손님", "ソンニム", "お客様"], ["또 올게요", "ット オルケヨ", "また来ます"]], "sentences": [["레스토랑에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "レストランについて話してください。"], ["저는 예약을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は予約が好きです。"], ["메뉴이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "メニューが必要です。"], ["오늘 추천을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、おすすめをしました。"], ["같이 주문에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に注文について話しましょう。"]]}, {"title": "感謝と謝罪", "words": [["고마워요", "コマウォヨ", "ありがとう"], ["덕분에", "トップネ", "おかげで"], ["감동", "カムドン", "感動"], ["도움", "トウム", "助け"], ["친절", "チンジョル", "親切"], ["미안해요", "ミアネヨ", "ごめんなさい"], ["잘못", "チャルモッ", "過ち"], ["실수", "シルス", "ミス"], ["용서", "ヨンソ", "許し"], ["진심으로", "チンシムロ", "心から"]], "sentences": [["고마워요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "ありがとうについて話してください。"], ["저는 덕분에을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私はおかげでが好きです。"], ["감동이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "感動が必要です。"], ["오늘 도움을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、助けをしました。"], ["같이 친절에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に親切について話しましょう。"]]}, {"title": "励まし", "words": [["힘내요", "ヒムネヨ", "頑張って"], ["잘할 수 있어요", "チャラル ス イッソヨ", "うまくできます"], ["걱정 마세요", "コクチョン マセヨ", "心配しないでください"], ["믿어요", "ミドヨ", "信じています"], ["괜찮아요", "クェンチャナヨ", "大丈夫です"], ["포기하지 마세요", "ポギハジ マセヨ", "諦めないでください"], ["응원", "ウンウォン", "応援"], ["함께", "ハムッケ", "一緒に"], ["끝까지", "クッカジ", "最後まで"], ["웃어요", "ウソヨ", "笑ってください"]], "sentences": [["힘내요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "頑張ってについて話してください。"], ["저는 잘할 수 있어요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私はうまくできますが好きです。"], ["걱정 마세요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "心配しないでくださいが必要です。"], ["오늘 믿어요을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、信じていますをしました。"], ["같이 괜찮아요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に大丈夫ですについて話しましょう。"]]}, {"title": "ドラマ定番", "words": [["정말요", "チョンマルリョ", "本当ですか"], ["말도 안 돼요", "マルド アン ドェヨ", "ありえません"], ["잠깐만요", "チャムッカンマンニョ", "ちょっと待ってください"], ["어떡해", "オットケ", "どうしよう"], ["왜 이래요", "ウェ イレヨ", "どうしたんですか"], ["그만해요", "クマネヨ", "やめてください"], ["믿을 수 없어요", "ミドゥル ス オプソヨ", "信じられません"], ["괜찮아", "クェンチャナ", "大丈夫"], ["보고 싶었어", "ポゴ シポッソ", "会いたかった"], ["사랑해", "サランヘ", "愛してる"]], "sentences": [["정말요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "本当ですかについて話してください。"], ["저는 말도 안 돼요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私はありえませんが好きです。"], ["잠깐만요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "ちょっと待ってくださいが必要です。"], ["오늘 어떡해을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、どうしようをしました。"], ["같이 왜 이래요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にどうしたんですかについて話しましょう。"]]}, {"title": "感情", "words": [["좋아요", "チョアヨ", "好きです"], ["싫어요", "シロヨ", "嫌です"], ["행복해요", "ヘンボケヨ", "幸せです"], ["슬퍼요", "スルポヨ", "悲しいです"], ["기뻐요", "キッポヨ", "うれしいです"], ["무서워요", "ムソウォヨ", "怖いです"], ["피곤해요", "ピゴネヨ", "疲れています"], ["바빠요", "パッパヨ", "忙しいです"], ["걱정", "コクチョン", "心配"], ["마음", "マウム", "心"]], "sentences": [["좋아요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "好きですについて話してください。"], ["저는 싫어요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は嫌ですが好きです。"], ["행복해요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "幸せですが必要です。"], ["오늘 슬퍼요을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、悲しいですをしました。"], ["같이 기뻐요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にうれしいですについて話しましょう。"]]}, {"title": "恋愛", "words": [["좋아하다", "チョアハダ", "好きだ"], ["사랑하다", "サランハダ", "愛する"], ["보고 싶다", "ポゴ シプタ", "会いたい"], ["기다리다", "キダリダ", "待つ"], ["만나다", "マンナダ", "会う"], ["데이트", "デイトゥ", "デート"], ["고백", "コベク", "告白"], ["설레다", "ソルレダ", "ときめく"], ["약속", "ヤクソク", "約束"], ["진심", "チンシム", "本心"]], "sentences": [["좋아하다에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "好きだについて話してください。"], ["저는 사랑하다을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は愛するが好きです。"], ["보고 싶다이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "会いたいが必要です。"], ["오늘 기다리다을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、待つをしました。"], ["같이 만나다에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に会うについて話しましょう。"]]}, {"title": "会社", "words": [["회의", "フェイ", "会議"], ["사장님", "サジャンニム", "社長"], ["부장님", "プジャンニム", "部長"], ["비서", "ピソ", "秘書"], ["업무", "オンム", "業務"], ["보고", "ポゴ", "報告"], ["자료", "チャリョ", "資料"], ["일정", "イルチョン", "日程"], ["출근", "チュルグン", "出勤"], ["퇴근", "トェグン", "退勤"]], "sentences": [["회의에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "会議について話してください。"], ["저는 사장님을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は社長が好きです。"], ["부장님이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "部長が必要です。"], ["오늘 비서을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、秘書をしました。"], ["같이 업무에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に業務について話しましょう。"]]}, {"title": "電話", "words": [["전화", "チョナ", "電話"], ["여보세요", "ヨボセヨ", "もしもし"], ["연락", "ヨルラク", "連絡"], ["메시지", "メシジ", "メッセージ"], ["받다", "パッタ", "受ける"], ["끊다", "クンタ", "切る"], ["통화", "トンファ", "通話"], ["잠시", "チャムシ", "少しの間"], ["나중에", "ナジュンエ", "後で"], ["번호", "ポノ", "番号"]], "sentences": [["전화에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "電話について話してください。"], ["저는 여보세요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私はもしもしが好きです。"], ["연락이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "連絡が必要です。"], ["오늘 메시지을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、メッセージをしました。"], ["같이 받다에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に受けるについて話しましょう。"]]}, {"title": "食事", "words": [["밥", "パプ", "ご飯"], ["먹다", "モクタ", "食べる"], ["마시다", "マシダ", "飲む"], ["맛있어요", "マシッソヨ", "おいしいです"], ["배고파요", "ペゴパヨ", "お腹がすきました"], ["식사", "シクサ", "食事"], ["메뉴", "メニュ", "メニュー"], ["물", "ムル", "水"], ["커피", "コピ", "コーヒー"], ["잘 먹겠습니다", "チャル モッケッスムニダ", "いただきます"]], "sentences": [["밥에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "ご飯について話してください。"], ["저는 먹다을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は食べるが好きです。"], ["마시다이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "飲むが必要です。"], ["오늘 맛있어요을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、おいしいですをしました。"], ["같이 배고파요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にお腹がすきましたについて話しましょう。"]]}, {"title": "買い物", "words": [["얼마예요", "オルマエヨ", "いくらですか"], ["비싸요", "ピッサヨ", "高いです"], ["싸요", "サヨ", "安いです"], ["사다", "サダ", "買う"], ["팔다", "パルダ", "売る"], ["옷", "オッ", "服"], ["선물", "ソンムル", "プレゼント"], ["카드", "カドゥ", "カード"], ["현금", "ヒョングム", "現金"], ["필요하다", "ピリョハダ", "必要だ"]], "sentences": [["얼마예요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "いくらですかについて話してください。"], ["저는 비싸요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は高いですが好きです。"], ["싸요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "安いですが必要です。"], ["오늘 사다을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、買うをしました。"], ["같이 팔다에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に売るについて話しましょう。"]]}, {"title": "移動", "words": [["가다", "カダ", "行く"], ["오다", "オダ", "来る"], ["타다", "タダ", "乗る"], ["내리다", "ネリダ", "降りる"], ["택시", "テクシ", "タクシー"], ["지하철", "チハチョル", "地下鉄"], ["버스", "ポス", "バス"], ["길", "キル", "道"], ["왼쪽", "ウェンチョク", "左"], ["오른쪽", "オルンチョク", "右"]], "sentences": [["가다에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "行くについて話してください。"], ["저는 오다을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は来るが好きです。"], ["타다이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "乗るが必要です。"], ["오늘 내리다을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、降りるをしました。"], ["같이 택시에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒にタクシーについて話しましょう。"]]}, {"title": "時間", "words": [["시간", "シガン", "時間"], ["몇 시", "ミョッ シ", "何時"], ["아침", "アチム", "朝"], ["점심", "チョムシム", "昼"], ["저녁", "チョニョク", "夕方"], ["늦다", "ヌッタ", "遅い"], ["일찍", "イルチク", "早く"], ["먼저", "モンジョ", "先に"], ["곧", "コッ", "すぐ"], ["동안", "トンアン", "間"]], "sentences": [["시간에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "時間について話してください。"], ["저는 몇 시을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は何時が好きです。"], ["아침이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "朝が必要です。"], ["오늘 점심을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、昼をしました。"], ["같이 저녁에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に夕方について話しましょう。"]]}, {"title": "依頼", "words": [["부탁", "プタク", "お願い"], ["도와주세요", "トワジュセヨ", "助けてください"], ["해 주세요", "ヘ ジュセヨ", "してください"], ["잠깐", "チャムッカン", "少し"], ["기다려 주세요", "キダリョ ジュセヨ", "待ってください"], ["보여 주세요", "ポヨ ジュセヨ", "見せてください"], ["말해 주세요", "マレ ジュセヨ", "言ってください"], ["천천히", "チョンチョニ", "ゆっくり"], ["다시", "タシ", "もう一度"], ["함께", "ハムッケ", "一緒に"]], "sentences": [["부탁에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "お願いについて話してください。"], ["저는 도와주세요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は助けてくださいが好きです。"], ["해 주세요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "してくださいが必要です。"], ["오늘 잠깐을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、少しをしました。"], ["같이 기다려 주세요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に待ってくださいについて話しましょう。"]]}, {"title": "過去と未来", "words": [["갔어요", "カッソヨ", "行きました"], ["왔어요", "ワッソヨ", "来ました"], ["했어요", "ヘッソヨ", "しました"], ["먹었어요", "モゴッソヨ", "食べました"], ["봤어요", "ポッソヨ", "見ました"], ["갈 거예요", "カル コエヨ", "行く予定です"], ["할 거예요", "ハル コエヨ", "する予定です"], ["기다릴게요", "キダリルケヨ", "待ちます"], ["다음", "タウム", "次"], ["꼭", "コッ", "必ず"]], "sentences": [["갔어요에 대해 말해 주세요.", "〜エ テヘ マレ ジュセヨ", "行きましたについて話してください。"], ["저는 왔어요을/를 좋아해요.", "チョヌン 〜ウル／ルル チョアヘヨ", "私は来ましたが好きです。"], ["했어요이/가 필요해요.", "〜イ／ガ ピリョヘヨ", "しましたが必要です。"], ["오늘 먹었어요을/를 했어요.", "オヌル 〜ウル／ルル ヘッソヨ", "今日、食べましたをしました。"], ["같이 봤어요에 대해 이야기해요.", "カチ 〜エ テヘ イヤギヘヨ", "一緒に見ましたについて話しましょう。"]]}];
+const DAYS=[{"title": "あいさつと基本返答", "words": [["안녕하세요", "アンニョンハセヨ", "こんにちは"], ["감사합니다", "カムサハムニダ", "ありがとうございます"], ["죄송합니다", "チェソンハムニダ", "申し訳ありません"], ["괜찮아요", "クェンチャナヨ", "大丈夫です"], ["네", "ネ", "はい"], ["아니요", "アニヨ", "いいえ"], ["맞아요", "マジャヨ", "合っています"], ["아니에요", "アニエヨ", "違います"], ["알겠어요", "アルゲッソヨ", "分かりました"], ["모르겠어요", "モルゲッソヨ", "分かりません"]], "sentences": [["안녕하세요. 처음 뵙겠습니다.", "アンニョンハセヨ。チョウム ペプケッスムニダ", "こんにちは。初めてお目にかかります。", "처음＝初めて／뵙겠습니다＝お目にかかります（만나다の謙譲表現）"], ["정말 감사합니다.", "チョンマル カムサハムニダ", "本当にありがとうございます。", "정말＝本当に／감사합니다＝ありがとうございます（丁寧）"], ["죄송하지만 다시 말해 주세요.", "チェソンハジマン タシ マレ ジュセヨ", "申し訳ありませんが、もう一度言ってください。", "-지만＝〜ですが／-아・어 주세요＝〜してください"], ["괜찮아요. 걱정하지 마세요.", "クェンチャナヨ。コクチョンハジ マセヨ", "大丈夫です。心配しないでください。", "-지 마세요＝〜しないでください"], ["네, 알겠어요.", "ネ、アルゲッソヨ", "はい、分かりました。", "알다＝分かる・知る／알겠어요＝分かりました"]]}, {"title": "自己紹介と人", "words": [["저", "チョ", "私"], ["당신", "タンシン", "あなた"], ["사람", "サラム", "人"], ["이름", "イルム", "名前"], ["회사", "フェサ", "会社"], ["직원", "チグォン", "社員"], ["친구", "チング", "友達"], ["가족", "カジョク", "家族"], ["누구", "ヌグ", "誰"], ["처음", "チョウム", "初めて"]], "sentences": [["저는 김미소예요.", "チョヌン キムミソエヨ", "私はキム・ミソです。", "저는＝私は／母音で終わる名詞＋예요＝〜です"], ["이름이 뭐예요?", "イルミ ムォエヨ", "名前は何ですか？", "이름이＝名前が／뭐예요?＝何ですか？"], ["그 사람은 누구예요?", "ク サラムン ヌグエヨ", "その人は誰ですか？", "그＝その／누구＝誰"], ["저는 이 회사 직원이에요.", "チョヌン イ フェサ チグォニエヨ", "私はこの会社の社員です。", "子音で終わる名詞＋이에요＝〜です"], ["처음 만났지만 반가워요.", "チョウム マンナッチマン パンガウォヨ", "初めて会いましたが、うれしいです。", "-았・었지만＝〜しましたが／반가워요＝会えてうれしいです"]]}, {"title": "疑問詞と日常会話", "words": [["뭐", "ムォ", "何"], ["왜", "ウェ", "なぜ"], ["어디", "オディ", "どこ"], ["언제", "オンジェ", "いつ"], ["어떻게", "オットケ", "どう"], ["지금", "チグム", "今"], ["오늘", "オヌル", "今日"], ["내일", "ネイル", "明日"], ["같이", "カチ", "一緒に"], ["정말", "チョンマル", "本当に"]], "sentences": [["지금 뭐 해요?", "チグム ムォ ヘヨ", "今、何をしていますか？", "뭐＝何／하다→해요＝します"], ["왜 그렇게 생각해요?", "ウェ クロッケ センガケヨ", "なぜ、そのように考えるのですか？", "왜＝なぜ／그렇게＝そのように"], ["오늘 어디에 가요?", "オヌル オディエ カヨ", "今日はどこへ行きますか？", "場所＋에 가요＝〜へ行きます"], ["언제 만날까요?", "オンジェ マンナルッカヨ", "いつ会いましょうか？", "-ㄹ・을까요?＝〜しましょうか？"], ["내일 같이 가요.", "ネイル カチ カヨ", "明日、一緒に行きましょう。", "같이＝一緒に／해요体は勧誘にも使える"]]}, {"title": "感情を伝える", "words": [["좋아요", "チョアヨ", "いいです／好きです"], ["싫어요", "シロヨ", "嫌です"], ["행복해요", "ヘンボケヨ", "幸せです"], ["기뻐요", "キッポヨ", "うれしいです"], ["슬퍼요", "スルポヨ", "悲しいです"], ["무서워요", "ムソウォヨ", "怖いです"], ["화가 나요", "ファガ ナヨ", "腹が立ちます"], ["걱정돼요", "コクチョンデヨ", "心配です"], ["피곤해요", "ピゴネヨ", "疲れています"], ["괜찮아요", "クェンチャナヨ", "大丈夫です"]], "sentences": [["오늘은 정말 행복해요.", "オヌルン チョンマル ヘンボケヨ", "今日は本当に幸せです。", "오늘은＝今日は／정말＝本当に"], ["당신을 만나서 기뻐요.", "タンシヌル マンナソ キッポヨ", "あなたに会えてうれしいです。", "-아・어서＝〜して、〜なので"], ["왜 이렇게 걱정돼요?", "ウェ イロッケ コクチョンデヨ", "なぜ、こんなに心配なのですか？", "이렇게＝このように、こんなに"], ["저는 하나도 안 무서워요.", "チョヌン ハナド アン ムソウォヨ", "私は少しも怖くありません。", "하나도 안＝少しも〜ない"], ["피곤하지만 괜찮아요.", "ピゴナジマン クェンチャナヨ", "疲れていますが、大丈夫です。", "-지만＝〜ですが"]]}, {"title": "恋愛と気持ち", "words": [["좋아하다", "チョアハダ", "好きだ"], ["사랑하다", "サランハダ", "愛する"], ["보고 싶다", "ポゴ シプタ", "会いたい"], ["기다리다", "キダリダ", "待つ"], ["만나다", "マンナダ", "会う"], ["설레다", "ソルレダ", "ときめく"], ["고백하다", "コベカダ", "告白する"], ["약속", "ヤクソク", "約束"], ["진심", "チンシム", "本心"], ["마음", "マウム", "心／気持ち"]], "sentences": [["저는 당신을 좋아해요.", "チョヌン タンシヌル チョアヘヨ", "私はあなたが好きです。", "人＋을・를 좋아해요＝人が好きです"], ["많이 보고 싶었어요.", "マニ ポゴ シポッソヨ", "とても会いたかったです。", "-고 싶다＝〜したい／-었어요＝過去"], ["제 마음은 진심이에요.", "チェ マウムン チンシミエヨ", "私の気持ちは本心です。", "제＝私の（저의の縮約）"], ["언제부터 저를 좋아했어요?", "オンジェブト チョルル チョアヘッソヨ", "いつから私を好きだったのですか？", "-부터＝〜から"], ["앞으로도 제 옆에 있어 주세요.", "アプロド チェ ヨペ イッソ ジュセヨ", "これからも私のそばにいてください。", "앞으로도＝これからも／-아・어 주세요＝〜してください"]]}, {"title": "会社と秘書業務", "words": [["회사", "フェサ", "会社"], ["비서", "ピソ", "秘書"], ["사장님", "サジャンニム", "社長"], ["회의", "フェイ", "会議"], ["업무", "オンム", "業務"], ["보고하다", "ポゴハダ", "報告する"], ["자료", "チャリョ", "資料"], ["일정", "イルチョン", "日程"], ["출근하다", "チュルグナダ", "出勤する"], ["퇴근하다", "トェグナダ", "退勤する"]], "sentences": [["오늘 회의는 열 시에 시작합니다.", "オヌル フェイヌン ヨル シエ シジャカムニダ", "今日の会議は10時に始まります。", "時刻＋에＝〜時に／-ㅂ니다＝かしこまった丁寧形"], ["회의 자료를 준비했어요.", "フェイ チャリョルル チュンビヘッソヨ", "会議資料を準備しました。", "名詞＋을・를＝〜を／준비하다＝準備する"], ["사장님께 일정을 보고할게요.", "サジャンニムッケ イルチョンウル ポゴハルケヨ", "社長に日程を報告しますね。", "께＝〜に（敬語）／-ㄹ・을게요＝〜しますね"], ["오늘은 야근하지 마세요.", "オヌルン ヤグナジ マセヨ", "今日は残業しないでください。", "야근하다＝残業する／-지 마세요＝〜しないでください"], ["업무가 끝나면 같이 퇴근해요.", "オンムガ クンナミョン カチ トェグネヨ", "仕事が終わったら、一緒に退勤しましょう。", "-면＝〜したら／같이＝一緒に"]]}, {"title": "電話と連絡", "words": [["전화", "チョナ", "電話"], ["연락", "ヨルラク", "連絡"], ["전화하다", "チョナハダ", "電話する"], ["받다", "パッタ", "受ける／取る"], ["끊다", "クンタ", "切る"], ["메시지", "メシジ", "メッセージ"], ["번호", "ポノ", "番号"], ["통화 중", "トンファ ジュン", "通話中"], ["부재중 전화", "プジェジュン チョナ", "不在着信"], ["다시", "タシ", "もう一度"]], "sentences": [["지금 전화해도 돼요?", "チグム チョナヘド ドェヨ", "今、電話してもいいですか？", "-아・어도 돼요?＝〜してもいいですか？"], ["잠시만 기다려 주세요.", "チャムシマン キダリョ ジュセヨ", "少しだけ待ってください。", "-아・어 주세요＝〜してください"], ["나중에 다시 전화할게요.", "ナジュンエ タシ チョナハルケヨ", "あとで、もう一度電話しますね。", "-ㄹ・을게요＝〜しますね"], ["메시지를 확인했어요.", "メシジルル ファギネッソヨ", "メッセージを確認しました。", "-았・었어요＝〜しました"], ["전화번호를 알려 주세요.", "チョナボノルル アルリョ ジュセヨ", "電話番号を教えてください。", "알려 주세요＝教えてください"]]}, {"title": "食事とレストラン", "words": [["식사", "シクサ", "食事"], ["음식", "ウムシク", "料理／食べ物"], ["메뉴", "メニュ", "メニュー"], ["맛있어요", "マシッソヨ", "おいしいです"], ["배고파요", "ペゴパヨ", "お腹が空いています"], ["주문하다", "チュムナダ", "注文する"], ["추천하다", "チュチョナダ", "おすすめする"], ["물", "ムル", "水"], ["커피", "コピ", "コーヒー"], ["계산", "ケサン", "会計"]], "sentences": [["뭐 먹고 싶어요?", "ムォ モッコ シポヨ", "何を食べたいですか？", "-고 싶어요＝〜したいです"], ["이 메뉴를 추천해 주세요.", "イ メニュルル チュチョネ ジュセヨ", "このメニューをおすすめしてください。", "추천해 주세요＝おすすめしてください"], ["정말 맛있어요.", "チョンマル マシッソヨ", "本当においしいです。", "정말＝本当に"], ["물 한 잔 주세요.", "ムル ハン ジャン ジュセヨ", "水を一杯ください。", "한 잔＝一杯"], ["계산해 주세요.", "ケサネ ジュセヨ", "お会計をお願いします。", "계산하다＝会計する"]]}, {"title": "買い物", "words": [["쇼핑", "ショピン", "買い物"], ["가게", "カゲ", "店"], ["가격", "カギョク", "価格"], ["얼마", "オルマ", "いくら"], ["비싸요", "ピッサヨ", "高いです"], ["싸요", "サヨ", "安いです"], ["사다", "サダ", "買う"], ["입어 보다", "イボ ポダ", "試着してみる"], ["색깔", "セッカル", "色"], ["카드", "カドゥ", "カード"]], "sentences": [["이거 얼마예요?", "イゴ オルマエヨ", "これはいくらですか？", "얼마예요?＝いくらですか？"], ["조금 비싸요.", "チョグム ピッサヨ", "少し高いです。", "조금＝少し"], ["이 옷을 입어 봐도 돼요?", "イ オスル イボ ブァド ドェヨ", "この服を試着してもいいですか？", "-아・어 보다＝〜してみる"], ["다른 색깔도 있어요?", "タルン セッカルド イッソヨ", "ほかの色もありますか？", "-도＝〜も"], ["카드로 계산할게요.", "カドゥロ ケサナルケヨ", "カードで支払います。", "-로＝〜で（手段）"]]}, {"title": "移動と待ち合わせ", "words": [["가다", "カダ", "行く"], ["오다", "オダ", "来る"], ["도착하다", "トチャカダ", "到着する"], ["출발하다", "チュルバラダ", "出発する"], ["지하철", "チハチョル", "地下鉄"], ["버스", "ポス", "バス"], ["택시", "テクシ", "タクシー"], ["역", "ヨク", "駅"], ["길", "キル", "道"], ["늦다", "ヌッタ", "遅れる"]], "sentences": [["지금 어디예요?", "チグム オディエヨ", "今、どこですか？", "어디예요?＝どこですか？"], ["곧 도착해요.", "コッ トチャケヨ", "もうすぐ到着します。", "곧＝もうすぐ"], ["지하철로 갈게요.", "チハチョルロ カルケヨ", "地下鉄で行きます。", "-로＝〜で（交通手段）"], ["역 앞에서 만나요.", "ヨク アペソ マンナヨ", "駅の前で会いましょう。", "場所＋에서＝〜で"], ["미안해요. 조금 늦을 것 같아요.", "ミアネヨ。チョグム ヌジュル コッ カタヨ", "ごめんなさい。少し遅れそうです。", "-ㄹ・을 것 같아요＝〜しそうです"]]}, {"title": "時間と約束", "words": [["시간", "シガン", "時間"], ["오늘", "オヌル", "今日"], ["내일", "ネイル", "明日"], ["어제", "オジェ", "昨日"], ["아침", "アチム", "朝"], ["점심", "チョムシム", "昼"], ["저녁", "チョニョク", "夕方"], ["약속", "ヤクソク", "約束"], ["일찍", "イルッチク", "早く"], ["늦게", "ヌッケ", "遅く"]], "sentences": [["지금 몇 시예요?", "チグム ミョッ シエヨ", "今、何時ですか？", "몇 시＝何時"], ["내일 시간이 있어요?", "ネイル シガニ イッソヨ", "明日、時間がありますか？", "시간이 있다＝時間がある"], ["약속 시간을 바꿔도 돼요?", "ヤクソク シガヌル パックォド ドェヨ", "約束の時間を変えてもいいですか？", "-아・어도 돼요?＝〜してもいいですか？"], ["조금 일찍 만나요.", "チョグム イルッチク マンナヨ", "少し早く会いましょう。", "일찍＝早く"], ["오늘 저녁에 연락할게요.", "オヌル チョニョゲ ヨルラカルケヨ", "今日の夕方に連絡しますね。", "時＋에＝〜に"]]}, {"title": "お願いと依頼", "words": [["부탁", "プタク", "お願い"], ["도와주다", "トワジュダ", "手伝う"], ["보여주다", "ポヨジュダ", "見せる"], ["알려주다", "アルリョジュダ", "教える"], ["기다리다", "キダリダ", "待つ"], ["확인하다", "ファギナダ", "確認する"], ["준비하다", "チュンビハダ", "準備する"], ["보내다", "ポネダ", "送る"], ["설명하다", "ソルミョンハダ", "説明する"], ["필요하다", "ピリョハダ", "必要だ"]], "sentences": [["부탁이 하나 있어요.", "プタギ ハナ イッソヨ", "お願いが一つあります。", "부탁이 있다＝お願いがある"], ["이것 좀 도와주세요.", "イゴッ チョム トワジュセヨ", "これを少し手伝ってください。", "좀＝ちょっと"], ["다시 설명해 주세요.", "タシ ソルミョンヘ ジュセヨ", "もう一度説明してください。", "-아・어 주세요＝〜してください"], ["자료를 보내 주세요.", "チャリョルル ポネ ジュセヨ", "資料を送ってください。", "보내 주세요＝送ってください"], ["확인하고 알려 주세요.", "ファギナゴ アルリョ ジュセヨ", "確認して、教えてください。", "-고＝〜して"]]}, {"title": "体調と気づかい", "words": [["아프다", "アプダ", "痛い／具合が悪い"], ["괜찮다", "クェンチャンタ", "大丈夫だ"], ["감기", "カムギ", "風邪"], ["열", "ヨル", "熱"], ["머리", "モリ", "頭"], ["배", "ペ", "お腹"], ["약", "ヤク", "薬"], ["병원", "ピョンウォン", "病院"], ["쉬다", "スィダ", "休む"], ["걱정하다", "コクチョンハダ", "心配する"]], "sentences": [["어디가 아파요?", "オディガ アパヨ", "どこが痛いですか？", "어디가＝どこが"], ["감기에 걸린 것 같아요.", "カムギエ コルリン ゴッ カタヨ", "風邪をひいたようです。", "-ㄴ・은 것 같아요＝〜のようです"], ["오늘은 푹 쉬세요.", "オヌルン プク スィセヨ", "今日はゆっくり休んでください。", "푹＝十分に"], ["약을 먹었어요?", "ヤグル モゴッソヨ", "薬を飲みましたか？", "약을 먹다＝薬を飲む"], ["너무 걱정하지 마세요.", "ノム コクチョンハジ マセヨ", "あまり心配しないでください。", "-지 마세요＝〜しないでください"]]}, {"title": "天気と予定", "words": [["날씨", "ナルッシ", "天気"], ["맑다", "マクタ", "晴れている"], ["흐리다", "フリダ", "曇っている"], ["비", "ピ", "雨"], ["눈", "ヌン", "雪"], ["덥다", "トプタ", "暑い"], ["춥다", "チュプタ", "寒い"], ["바람", "パラム", "風"], ["우산", "ウサン", "傘"], ["계획", "ケフェク", "計画"]], "sentences": [["오늘 날씨가 어때요?", "オヌル ナルッシガ オッテヨ", "今日の天気はどうですか？", "어때요?＝どうですか？"], ["비가 올 것 같아요.", "ピガ オル コッ カタヨ", "雨が降りそうです。", "-ㄹ・을 것 같아요＝〜しそうです"], ["우산을 가져가세요.", "ウサヌル カジョガセヨ", "傘を持って行ってください。", "가져가다＝持って行く"], ["날씨가 좋으면 산책해요.", "ナルッシガ チョウミョン サンチェケヨ", "天気がよければ散歩しましょう。", "-으면・면＝〜なら"], ["내일 계획이 있어요?", "ネイル ケフェギ イッソヨ", "明日の予定がありますか？", "계획이 있다＝予定がある"]]}, {"title": "気持ちを確かめる", "words": [["생각", "センガク", "考え"], ["이해하다", "イヘハダ", "理解する"], ["믿다", "ミッタ", "信じる"], ["솔직하다", "ソルチカダ", "正直だ"], ["말하다", "マラダ", "話す"], ["듣다", "トゥッタ", "聞く"], ["오해하다", "オヘハダ", "誤解する"], ["진짜", "チンチャ", "本当に"], ["왜", "ウェ", "なぜ"], ["사실", "サシル", "実は"]], "sentences": [["솔직하게 말해 주세요.", "ソルチカゲ マレ ジュセヨ", "正直に話してください。", "-게＝〜に"], ["제 말을 믿어요?", "チェ マルル ミドヨ", "私の言葉を信じますか？", "믿다→믿어요"], ["왜 그렇게 생각해요?", "ウェ クロッケ センガケヨ", "なぜ、そう考えるのですか？", "그렇게＝そのように"], ["저를 오해하지 마세요.", "チョルル オヘハジ マセヨ", "私を誤解しないでください。", "-지 마세요＝〜しないでください"], ["사실은 저도 같은 마음이에요.", "サシルン チョド カトゥン マウミエヨ", "実は、私も同じ気持ちです。", "사실은＝実は"]]}, {"title": "レストランでのお迎え", "words": [["어서 오세요", "オソ オセヨ", "いらっしゃいませ"], ["예약", "イェヤク", "予約"], ["손님", "ソンニム", "お客様"], ["자리", "チャリ", "席"], ["안내하다", "アンネハダ", "案内する"], ["인원", "イヌォン", "人数"], ["성함", "ソンハム", "お名前（敬語）"], ["확인하다", "ファギナダ", "確認する"], ["기다리다", "キダリダ", "待つ"], ["편하다", "ピョナダ", "くつろげる"]], "sentences": [["어서 오세요. 예약하셨습니까?", "オソ オセヨ。イェヤカショッスムニッカ", "いらっしゃいませ。ご予約されていますか？", "-셨습니까?＝〜されましたか"], ["성함을 확인해도 될까요?", "ソンハムル ファギネド トェルッカヨ", "お名前を確認してもよろしいでしょうか？", "-아・어도 될까요?＝〜してもよろしいでしょうか？"], ["몇 분이세요?", "ミョッ プニセヨ", "何名様ですか？", "분＝名（敬語）"], ["자리로 안내해 드리겠습니다.", "チャリロ アンネヘ トゥリゲッスムニダ", "お席へご案内いたします。", "-아・어 드리다＝〜して差し上げる"], ["잠시만 기다려 주시겠어요?", "チャムシマン キダリョ ジュシゲッソヨ", "少々お待ちいただけますか？", "-아・어 주시겠어요?＝〜していただけますか？"]]}, {"title": "料理説明とおすすめ", "words": [["추천 메뉴", "チュチョン メニュ", "おすすめメニュー"], ["대표 요리", "テピョ ヨリ", "代表料理"], ["재료", "チェリョ", "食材"], ["소스", "ソス", "ソース"], ["맵다", "メプタ", "辛い"], ["달다", "タルダ", "甘い"], ["고소하다", "コソハダ", "香ばしい"], ["신선하다", "シンソナダ", "新鮮だ"], ["알레르기", "アルレルギ", "アレルギー"], ["곁들이다", "キョットゥリダ", "添える"]], "sentences": [["오늘의 추천 메뉴를 설명해 드릴게요.", "オヌレ チュチョン メニュルル ソルミョンヘ トゥリルケヨ", "本日のおすすめメニューをご説明します。", "-아・어 드릴게요＝〜して差し上げます"], ["이 요리는 제철 재료를 사용했습니다.", "イ ヨリヌン チェチョル チェリョルル サヨンヘッスムニダ", "この料理は旬の食材を使用しました。", "제철＝旬"], ["조금 매운데 괜찮으세요?", "チョグム メウンデ クェンチャヌセヨ", "少し辛いですが、大丈夫ですか？", "-는데＝〜ですが"], ["알레르기가 있으시면 말씀해 주세요.", "アルレルギガ イスシミョン マルスメ ジュセヨ", "アレルギーがございましたら、お申し付けください。", "-(으)시면＝〜でしたら"], ["이 와인은 생선 요리와 잘 어울립니다.", "イ ワイヌン センソン ヨリワ チャル オウルリムニダ", "このワインは魚料理とよく合います。", "잘 어울리다＝よく合う"]]}, {"title": "食事中の気づかい", "words": [["불편하다", "プルピョナダ", "不便だ"], ["필요하다", "ピリョハダ", "必要だ"], ["추가하다", "チュガハダ", "追加する"], ["접시", "チョプシ", "皿"], ["수저", "スジョ", "スプーンと箸"], ["물티슈", "ムルティシュ", "おしぼり"], ["온도", "オンド", "温度"], ["속도", "ソクト", "速度"], ["치우다", "チウダ", "片づける"], ["만족하다", "マンジョカダ", "満足する"]], "sentences": [["불편한 점은 없으세요?", "プルピョナン チョムン オプスセヨ", "ご不便な点はございませんか？", "없으세요＝ありませんか（敬語）"], ["필요하신 것이 있으면 말씀해 주세요.", "ピリョハシン ゴシ イスミョン マルスメ ジュセヨ", "必要なものがございましたら、お申し付けください。", "필요하신＝必要でいらっしゃる"], ["물을 더 가져다드릴까요?", "ムルル ト カジョダドゥリルッカヨ", "お水をさらにお持ちしましょうか？", "-아・어 드릴까요?＝〜いたしましょうか？"], ["식사 속도에 맞춰 준비하겠습니다.", "シクサ ソクトエ マッチュォ チュンビハゲッスムニダ", "お食事のペースに合わせて準備いたします。", "-에 맞춰＝〜に合わせて"], ["접시를 치워 드려도 될까요?", "チョプシルル チウォ ドゥリョド トェルッカヨ", "お皿をお下げしてもよろしいでしょうか？", "-아・어도 될까요?＝〜してもよろしいですか？"]]}, {"title": "会社の報告・相談", "words": [["보고", "ポゴ", "報告"], ["상담", "サンダム", "相談"], ["진행하다", "チネンハダ", "進める"], ["문제", "ムンジェ", "問題"], ["해결하다", "ヘギョラダ", "解決する"], ["상황", "サンファン", "状況"], ["결과", "キョルグァ", "結果"], ["의견", "ウィギョン", "意見"], ["결정하다", "キョルチョンハダ", "決定する"], ["공유하다", "コンユハダ", "共有する"]], "sentences": [["현재 상황을 보고드리겠습니다.", "ヒョンジェ サンファンウル ポゴドゥリゲッスムニダ", "現在の状況をご報告いたします。", "보고드리다＝ご報告申し上げる"], ["문제가 하나 발생했습니다.", "ムンジェガ ハナ パルセンヘッスムニダ", "問題が一つ発生しました。", "발생하다＝発生する"], ["해결 방법을 함께 검토하고 싶습니다.", "ヘギョル パンボブル ハムッケ コムトハゴ シプスムニダ", "解決方法を一緒に検討したいです。", "-고 싶습니다＝〜したいです"], ["제 의견을 말씀드려도 될까요?", "チェ ウィギョヌル マルスムドゥリョド トェルッカヨ", "私の意見を申し上げてもよろしいでしょうか？", "말씀드리다＝申し上げる"], ["결정된 내용을 팀에 공유하겠습니다.", "キョルチョンデン ネヨンウル ティメ コンユハゲッスムニダ", "決定した内容をチームに共有します。", "결정된＝決定された"]]}, {"title": "ドラマでよく聞く本音表現", "words": [["도대체", "トデチェ", "一体"], ["설마", "ソルマ", "まさか"], ["그만하다", "クマナダ", "やめる"], ["상관없다", "サングァノプタ", "構わない"], ["말도 안 되다", "マルド アン ドェダ", "ありえない"], ["어쩌다", "オッチョダ", "どうして"], ["후회하다", "フフェハダ", "後悔する"], ["참다", "チャムタ", "我慢する"], ["놓치다", "ノッチダ", "逃す"], ["떠나다", "ットナダ", "去る"]], "sentences": [["도대체 왜 그러는 거예요?", "トデチェ ウェ クロヌン ゴエヨ", "一体、なぜそんなことをするのですか？", "-는 거예요?＝〜しているのですか？"], ["설마 저를 피하는 거예요?", "ソルマ チョルル ピハヌン ゴエヨ", "まさか、私を避けているのですか？", "설마＝まさか"], ["이제 그만하고 솔직하게 말해요.", "イジェ クマナゴ ソルチカゲ マレヨ", "もうやめて、正直に話してください。", "그만하다＝やめる"], ["저는 절대 후회하지 않을 거예요.", "チョヌン チョルテ フフェハジ アヌル コエヨ", "私は絶対に後悔しません。", "-지 않을 거예요＝〜しないつもりです"], ["이번에는 당신을 놓치고 싶지 않아요.", "イボネヌン タンシヌル ノッチゴ シプチ アナヨ", "今度はあなたを逃したくありません。", "-고 싶지 않아요＝〜したくありません"]]}, {"title": "会議で意見を伝える", "words": [["회의", "フェイ", "会議"], ["의견", "ウィギョン", "意見"], ["제안하다", "チェアナダ", "提案する"], ["찬성하다", "チャンソンハダ", "賛成する"], ["반대하다", "パンデハダ", "反対する"], ["검토하다", "コムトハダ", "検討する"], ["결론", "キョルロン", "結論"], ["논의하다", "ノニハダ", "議論する"], ["효과", "ヒョグァ", "効果"], ["방향", "パンヒャン", "方向"]], "sentences": [["제 의견을 말씀드리겠습니다.", "チェ ウィギョヌル マルスムドゥリゲッスムニダ", "私の意見を申し上げます。", "말씀드리다＝申し上げる"], ["이 방향에 찬성합니다.", "イ パンヒャンエ チャンソンハムニダ", "この方向に賛成します。", "-에 찬성하다＝〜に賛成する"], ["다른 방법도 검토해 보면 좋겠습니다.", "タルン パンボプト コムトヘ ボミョン チョッケッスムニダ", "ほかの方法も検討してみるとよいと思います。", "-아・어 보면 좋겠습니다＝〜してみるとよいです"], ["이 제안의 효과는 무엇입니까?", "イ チェアネ ヒョグァヌン ムオシムニッカ", "この提案の効果は何ですか？", "무엇입니까?＝何ですか（丁寧）"], ["오늘 안에 결론을 내리겠습니다.", "オヌル アネ キョルロヌル ネリゲッスムニダ", "今日中に結論を出します。", "-안에＝〜以内に／결론을 내리다＝結論を出す"]]}, {"title": "上司への報告と確認", "words": [["상사", "サンサ", "上司"], ["보고서", "ポゴソ", "報告書"], ["확인", "ファギン", "確認"], ["수정하다", "スジョンハダ", "修正する"], ["완료하다", "ワルリョハダ", "完了する"], ["지시", "チシ", "指示"], ["내용", "ネヨン", "内容"], ["마감", "マガム", "締切"], ["진행 상황", "チネン サンファン", "進捗状況"], ["승인", "スンイン", "承認"]], "sentences": [["진행 상황을 보고드리겠습니다.", "チネン サンファンウル ポゴドゥリゲッスムニダ", "進捗状況をご報告いたします。", "보고드리다＝ご報告する"], ["수정한 내용을 확인해 주세요.", "スジョンハン ネヨンウル ファギネ ジュセヨ", "修正した内容をご確認ください。", "수정한＝修正した"], ["마감은 내일까지입니다.", "マガムン ネイルッカジイムニダ", "締切は明日までです。", "-까지＝〜まで"], ["이 부분은 승인이 필요합니다.", "イ ブブヌン スンイニ ピリョハムニダ", "この部分は承認が必要です。", "필요하다＝必要だ"], ["지시해 주신 대로 완료했습니다.", "チシヘ ジュシン デロ ワルリョヘッスムニダ", "ご指示いただいた通りに完了しました。", "-아・어 주신 대로＝〜してくださった通りに"]]}, {"title": "クレーム対応とお詫び", "words": [["불만", "プルマン", "不満"], ["사과하다", "サグァハダ", "謝罪する"], ["불편", "プルピョン", "不便"], ["실수", "シルス", "ミス"], ["해결", "ヘギョル", "解決"], ["확인하다", "ファギナダ", "確認する"], ["책임", "チェギム", "責任"], ["교환", "キョファン", "交換"], ["환불", "ファンブル", "返金"], ["신속하다", "シンソカダ", "迅速だ"]], "sentences": [["불편을 드려 정말 죄송합니다.", "プルピョヌル トゥリョ チョンマル チェソンハムニダ", "ご不便をおかけして本当に申し訳ございません。", "불편을 드리다＝不便をおかけする"], ["상황을 바로 확인하겠습니다.", "サンファンウル パロ ファギナゲッスムニダ", "状況をすぐ確認いたします。", "바로＝すぐに"], ["저희의 실수였습니다.", "チョヒエ シルスヨッスムニダ", "私どものミスでした。", "저희＝私ども"], ["신속하게 해결해 드리겠습니다.", "シンソカゲ ヘギョレ トゥリゲッスムニダ", "迅速に解決いたします。", "-아・어 드리겠습니다＝〜して差し上げます"], ["교환이나 환불을 도와드리겠습니다.", "キョファニナ ファンブルル トワドゥリゲッスムニダ", "交換または返金のお手伝いをいたします。", "-이나＝〜または"]]}, {"title": "レストランでの会計とお見送り", "words": [["계산서", "ケサンソ", "伝票"], ["결제", "キョルチェ", "決済"], ["현금", "ヒョングム", "現金"], ["카드", "カドゥ", "カード"], ["영수증", "ヨンスジュン", "領収書"], ["할인", "ハリン", "割引"], ["포인트", "ポイントゥ", "ポイント"], ["감사하다", "カムサハダ", "感謝する"], ["조심히", "チョシミ", "お気をつけて"], ["다시 오다", "タシ オダ", "また来る"]], "sentences": [["계산서를 가져다드리겠습니다.", "ケサンソルル カジョダドゥリゲッスムニダ", "伝票をお持ちいたします。", "가져다드리다＝持ってきて差し上げる"], ["카드로 결제하시겠어요?", "カドゥロ キョルチェハシゲッソヨ", "カードでお支払いされますか？", "-시겠어요?＝〜なさいますか？"], ["영수증이 필요하세요?", "ヨンスジュンイ ピリョハセヨ", "領収書は必要ですか？", "필요하세요?＝必要ですか（敬語）"], ["방문해 주셔서 감사합니다.", "パンムネ ジュショソ カムサハムニダ", "ご来店いただきありがとうございます。", "-아・어 주셔서＝〜してくださって"], ["조심히 들어가세요. 또 뵙겠습니다.", "チョシミ トゥロガセヨ。ット ペプケッスムニダ", "お気をつけてお帰りください。またお目にかかります。", "또 뵙겠습니다＝またお会いします"]]}, {"title": "ドラマのすれ違い表現", "words": [["착각하다", "チャッカカダ", "勘違いする"], ["멀어지다", "モロジダ", "遠ざかる"], ["기대하다", "キデハダ", "期待する"], ["실망하다", "シルマンハダ", "失望する"], ["기회", "キフェ", "機会"], ["변하다", "ピョナダ", "変わる"], ["마주치다", "マジュチダ", "鉢合わせる"], ["숨기다", "スムギダ", "隠す"], ["진실", "チンシル", "真実"], ["떠나다", "ットナダ", "去る"]], "sentences": [["제가 뭔가 착각한 것 같아요.", "チェガ ムォンガ チャッカカン ゴッ カタヨ", "私が何か勘違いしたようです。", "-ㄴ・은 것 같아요＝〜のようです"], ["왜 저한테서 멀어지는 거예요?", "ウェ チョハンテソ モロジヌン ゴエヨ", "なぜ私から遠ざかるのですか？", "-한테서＝〜から"], ["더 이상 숨기지 마세요.", "ト イサン スムギジ マセヨ", "これ以上隠さないでください。", "더 이상＝これ以上"], ["이번 기회를 놓치고 싶지 않아요.", "イボン キフェルル ノッチゴ シプチ アナヨ", "今回の機会を逃したくありません。", "-고 싶지 않아요＝〜したくありません"], ["진실을 말해 주세요.", "チンシルル マレ ジュセヨ", "真実を話してください。", "말해 주세요＝話してください"]]}, {"title": "気まずい場面の会話", "words": [["어색하다", "オセカダ", "気まずい／ぎこちない"], ["침묵", "チムムク", "沈黙"], ["피하다", "ピハダ", "避ける"], ["신경 쓰다", "シンギョン スダ", "気にする"], ["부담", "プダム", "負担"], ["괜히", "クェニ", "むやみに／なんとなく"], ["분위기", "プニギ", "雰囲気"], ["미안하다", "ミアナダ", "申し訳ない"], ["솔직히", "ソルチキ", "正直に"], ["먼저", "モンジョ", "先に"]], "sentences": [["분위기가 조금 어색하네요.", "プニギガ チョグム オセカネヨ", "雰囲気が少し気まずいですね。", "-네요＝〜ですね（気づき）"], ["저를 피하지 마세요.", "チョルル ピハジ マセヨ", "私を避けないでください。", "-지 마세요＝〜しないでください"], ["너무 신경 쓰지 않아도 돼요.", "ノム シンギョン スジ アナド ドェヨ", "あまり気にしなくても大丈夫です。", "-지 않아도 돼요＝〜しなくてもいいです"], ["제가 먼저 사과할게요.", "チェガ モンジョ サグァハルケヨ", "私が先に謝りますね。", "먼저＝先に"], ["솔직히 조금 부담스러웠어요.", "ソルチキ チョグム プダムスロウォッソヨ", "正直、少し負担に感じました。", "부담스럽다＝負担に感じる"]]}, {"title": "ホテル・宴会での案内", "words": [["연회장", "ヨネジャン", "宴会場"], ["행사", "ヘンサ", "行事／イベント"], ["입장", "イプチャン", "入場"], ["좌석", "チャソク", "座席"], ["시간표", "シガンピョ", "時間表"], ["접수", "チョプス", "受付"], ["짐", "チム", "荷物"], ["보관하다", "ポグァナダ", "保管する"], ["엘리베이터", "エルリベイト", "エレベーター"], ["층", "チュン", "階"]], "sentences": [["연회장은 3층에 있습니다.", "ヨネジャンウン サム チュンエ イッスムニダ", "宴会場は3階にございます。", "場所＋에 있습니다＝〜にあります"], ["접수는 저쪽에서 도와드립니다.", "チョプスヌン チョッチョゲソ トワドゥリムニダ", "受付はあちらで承ります。", "저쪽＝あちら"], ["짐을 보관해 드릴까요?", "チムル ポグァネ トゥリルッカヨ", "お荷物をお預かりしましょうか？", "-아・어 드릴까요?＝〜いたしましょうか？"], ["행사는 곧 시작합니다.", "ヘンサヌン コッ シジャカムニダ", "イベントはまもなく始まります。", "곧＝まもなく"], ["좌석까지 안내해 드리겠습니다.", "チャソクッカジ アンネヘ トゥリゲッスムニダ", "お席までご案内いたします。", "-까지＝〜まで"]]}, {"title": "結婚式・お祝いの言葉", "words": [["결혼식", "キョロンシク", "結婚式"], ["축하하다", "チュカハダ", "祝う"], ["신랑", "シルラン", "新郎"], ["신부", "シンブ", "新婦"], ["행복", "ヘンボク", "幸せ"], ["소중하다", "ソジュンハダ", "大切だ"], ["추억", "チュオク", "思い出"], ["약속", "ヤクソク", "約束"], ["가족", "カジョク", "家族"], ["앞날", "アムナル", "将来／前途"]], "sentences": [["결혼을 진심으로 축하드립니다.", "キョロヌル チンシムロ チュカドゥリムニダ", "ご結婚を心よりお祝い申し上げます。", "진심으로＝心から"], ["두 분의 앞날에 행복이 가득하길 바랍니다.", "トゥ ブネ アムナレ ヘンボギ カドゥカギル パラムニダ", "お二人の将来が幸せで満ちることを願います。", "-길 바랍니다＝〜することを願います"], ["오늘이 소중한 추억이 되길 바랍니다.", "オヌリ ソジュンハン チュオギ トェギル パラムニダ", "今日が大切な思い出になりますように。", "되길 바랍니다＝なることを願います"], ["신랑 신부 입장입니다.", "シルラン シンブ イプチャンイムニダ", "新郎新婦の入場です。", "입장입니다＝入場です"], ["새로운 가족의 시작을 축하합니다.", "セロウン カジョゲ シジャグル チュカハムニダ", "新しい家族の始まりをお祝いします。", "새로운＝新しい"]]}, {"title": "自然な相づちとリアクション", "words": [["정말요?", "チョンマリョ", "本当ですか？"], ["그렇군요", "クロックニョ", "そうなんですね"], ["맞아요", "マジャヨ", "そうです"], ["아니요", "アニヨ", "いいえ"], ["글쎄요", "クルセヨ", "さあ、どうでしょう"], ["물론이죠", "ムルロニジョ", "もちろんです"], ["다행이다", "タヘンイダ", "よかった"], ["놀랍다", "ノルラプタ", "驚きだ"], ["이해하다", "イヘハダ", "理解する"], ["공감하다", "コンガマダ", "共感する"]], "sentences": [["정말요? 처음 들었어요.", "チョンマリョ。チョウム トゥロッソヨ", "本当ですか？初めて聞きました。", "처음＝初めて"], ["그렇군요. 이제 이해했어요.", "クロックニョ。イジェ イヘヘッソヨ", "そうなんですね。今、理解しました。", "그렇군요＝そうなんですね"], ["맞아요. 저도 그렇게 생각해요.", "マジャヨ。チョド クロッケ センガケヨ", "そうです。私もそう思います。", "저도＝私も"], ["다행이네요. 걱정했어요.", "タヘンイネヨ。コクチョンヘッソヨ", "よかったですね。心配しました。", "다행이네요＝よかったですね"], ["물론이죠. 제가 도와드릴게요.", "ムルロニジョ。チェガ トワドゥリルケヨ", "もちろんです。私がお手伝いします。", "물론이죠＝もちろんです"]]}, {"title": "30日総仕上げ会話", "words": [["배우다", "ペウダ", "学ぶ"], ["연습하다", "ヨンスパダ", "練習する"], ["기억하다", "キオカダ", "覚える"], ["사용하다", "サヨンハダ", "使う"], ["자신감", "チャシンガム", "自信"], ["계속하다", "ケソカダ", "続ける"], ["성장하다", "ソンジャンハダ", "成長する"], ["도전하다", "トジョナダ", "挑戦する"], ["목표", "モクピョ", "目標"], ["완성하다", "ワンソンハダ", "完成する"]], "sentences": [["30일 동안 정말 많이 배웠어요.", "サムシビル トンアン チョンマル マニ ペウォッソヨ", "30日間、本当にたくさん学びました。", "-동안＝〜の間"], ["이제 한국어로 말할 자신이 생겼어요.", "イジェ ハングゴロ マラル チャシニ センギョッソヨ", "今は韓国語で話す自信がつきました。", "자신이 생기다＝自信がつく"], ["배운 표현을 실제로 사용해 볼게요.", "ペウン ピョヒョヌル シルチェロ サヨンヘ ボルケヨ", "学んだ表現を実際に使ってみます。", "-아・어 보다＝〜してみる"], ["앞으로도 계속 연습하겠습니다.", "アプロド ケソク ヨンスパゲッスムニダ", "これからも練習を続けます。", "앞으로도＝これからも"], ["다음 목표에도 도전해 봅시다.", "タウム モクピョエド トジョネ ポプシダ", "次の目標にも挑戦してみましょう。", "-ㅂ시다＝〜しましょう"]]}];
 const STORE_KEY="korean30_mobile_fixed_v1";
 let state;
 try {
-  state=JSON.parse(localStorage.getItem(STORE_KEY)) || {unlocked:3,selected:1,dayDone:{},blockDone:{}};
+  state=JSON.parse(localStorage.getItem(STORE_KEY)) || {unlocked:3,selected:1,dayDone:{},blockDone:{},stats:{totalSeconds:0,lastActive:"",streak:0,testHistory:[]}};
 } catch(e) {
-  state={unlocked:3,selected:1,dayDone:{},blockDone:{}};
+  state={unlocked:3,selected:1,dayDone:{},blockDone:{},stats:{totalSeconds:0,lastActive:"",streak:0,testHistory:[]}};
 }
 let mode="words";
 let quiz=[];
 let questionIndex=0;
 let quizDays=[];
+let quizFirstTryCorrect=0;
+let quizAnswered=0;
+let quizFailed=false;
+let activeStartedAt=Date.now();
+let lastActivityAt=Date.now();
+
+state.stats=state.stats||{totalSeconds:0,lastActive:"",streak:0,testHistory:[]};
+state.stats.totalSeconds=Number(state.stats.totalSeconds||0);
+state.stats.testHistory=Array.isArray(state.stats.testHistory)?state.stats.testHistory:[];
+state.stats.streak=Number(state.stats.streak||0);
+
+function localDateKey(){
+  const d=new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function updateStreak(){
+  const today=localDateKey();
+  if(state.stats.lastActive===today)return;
+  const y=new Date(); y.setDate(y.getDate()-1);
+  const yesterday=`${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,"0")}-${String(y.getDate()).padStart(2,"0")}`;
+  state.stats.streak=state.stats.lastActive===yesterday?state.stats.streak+1:1;
+  state.stats.lastActive=today;
+  save();
+}
+function markActivity(){
+  lastActivityAt=Date.now();
+  updateStreak();
+}
+function commitStudyTime(){
+  const now=Date.now();
+  if(now-lastActivityAt<120000){
+    state.stats.totalSeconds+=Math.max(0,Math.round((now-activeStartedAt)/1000));
+  }
+  activeStartedAt=now;
+  save();
+}
+setInterval(()=>{commitStudyTime();renderDashboard()},30000);
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)commitStudyTime();
+  else {activeStartedAt=Date.now();lastActivityAt=Date.now();renderDashboard()}
+});
+window.addEventListener("beforeunload",commitStudyTime);
 
 const $=id=>document.getElementById(id);
 function save(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state))}catch(e){}}
 function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
+function getRecommendedDay(){
+  for(let n=1;n<=Math.min(30,state.unlocked);n++){
+    if(!state.dayDone[n]) return n;
+  }
+  return Math.min(30,state.unlocked);
+}
+function getDayCategory(n){
+  if([4,5,15,20].includes(n)) return {label:"ドラマ",cls:"cat-drama"};
+  if([8,16,17,18].includes(n)) return {label:"レストラン",cls:"cat-restaurant"};
+  if([6,19].includes(n)) return {label:"会社",cls:"cat-company"};
+  return {label:"日常会話",cls:"cat-daily"};
+}
+function renderDayPreview(n){
+  const box=$("todayDayPreview");
+  if(!box)return;
+  const day=DAYS[n-1];
+  const cat=getDayCategory(n);
+  const sample=day.sentences&&day.sentences[0]?day.sentences[0]:["","",""];
+  const status=n>state.unlocked?"未解放":state.dayDone[n]?"学習済み":"未学習";
+  box.innerHTML=`
+    <div class="day-preview-top">
+      <div>
+        <div class="muted">Day ${n}｜${status}</div>
+        <div class="day-preview-title">${escapeHtml(day.title)}</div>
+      </div>
+      <span class="day-preview-category ${cat.cls}">${cat.label}</span>
+    </div>
+    <div class="day-preview-phrase">
+      <div class="muted">このDayの代表フレーズ</div>
+      <div class="day-preview-ko">${escapeHtml(sample[0])}</div>
+      <div class="day-preview-read">${escapeHtml(sample[1])}</div>
+      <div class="day-preview-jp">${escapeHtml(sample[2])}</div>
+    </div>`;
+}
+function renderTodaySelector(){
+  const select=$("todayDaySelect");
+  if(!select)return;
+  const currentValue=Number(select.value)||state.selected||1;
+  select.innerHTML="";
+  for(let n=1;n<=30;n++){
+    const opt=document.createElement("option");
+    opt.value=String(n);
+    const locked=n>state.unlocked;
+    opt.disabled=locked;
+    const done=!!state.dayDone[n];
+    const cat=getDayCategory(n);
+    opt.textContent=`Day ${n}｜${cat.label}｜${DAYS[n-1].title}${locked?"（未解放）":done?"（学習済み）":""}`;
+    select.appendChild(opt);
+  }
+  const recommended=getRecommendedDay();
+  select.value=String(currentValue<=state.unlocked?currentValue:recommended);
+  $("todayRecommendation").textContent=`次に進む：Day ${recommended}「${DAYS[recommended-1].title}」`;
+  $("todayBadge").textContent=state.dayDone[recommended]?"復習":"SELECT";
+  renderDayPreview(Number(select.value));
+}
+function openSelectedDay(dayNumber){
+  const n=Number(dayNumber);
+  if(!n || n>state.unlocked){
+    alert("このDayはまだ解放されていません。");
+    return;
+  }
+  state.selected=n;
+  mode="words";
+  save();
+  renderApp();
+  document.querySelector(".card:nth-of-type(4)")?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderDashboard(){
+  const completed=Object.keys(state.dayDone||{}).filter(k=>state.dayDone[k]&&Number(k)<=30).length;
+  const pct=Math.round(completed/30*100);
+  const mins=Math.floor((state.stats.totalSeconds||0)/60);
+  const history=state.stats.testHistory||[];
+  const totalAnswered=history.reduce((s,h)=>s+(h.total||0),0);
+  const totalCorrect=history.reduce((s,h)=>s+(h.correct||0),0);
+  const accuracy=totalAnswered?Math.round(totalCorrect/totalAnswered*100):null;
+
+  $("metricProgress").textContent=pct+"%";
+  $("metricLessons").textContent=`${completed} / 30 Day`;
+  $("metricTime").textContent=mins<60?`${mins}分`:`${Math.floor(mins/60)}時間${mins%60}分`;
+  $("metricAccuracy").textContent=accuracy===null?"—":accuracy+"%";
+  $("metricTests").textContent=history.length?`${history.length}回の初回回答を集計`:"テスト未実施";
+  $("metricStreak").textContent=(state.stats.streak||0)+"日";
+「${DAYS[rec-1].title}」。5分から始めてみましょう。`;
+  }
+  $("metricToday").textContent=state.stats.lastActive===localDateKey()?"本日学習済み":"今日も少し進めよう";
+
+  const motivation=$("motivation");
+  const motivationTitle=$("motivationTitle");
+  const motivationMessage=$("motivationMessage");
+  motivation.className="motivation motivation-default";
+  let msgTitle="今日のひとこと";
+  let msg="まずは5分。今日の1問が、ドラマの聞き取りにつながります。";
+  if(pct>=100){
+    msgTitle="Day30 完全達成";
+    msg="身につけた表現を、ドラマ・接客・会社の会話で使ってみましょう。";
+    motivation.className="motivation motivation-achievement";
+  }else if((state.stats.streak||0)>=7){
+    msgTitle=`${state.stats.streak}日連続学習中`;
+    msg="ここまで続けられたことが大きな力です。今日も1フレーズ積み上げましょう。";
+    motivation.className="motivation motivation-streak";
+  }else if(accuracy!==null&&accuracy>=90){
+    msgTitle="初回正解率 90％以上";
+    msg="かなり定着しています。次は音声だけで意味を思い出せるか挑戦しましょう。";
+    motivation.className="motivation motivation-score";
+  }else if(completed>=10){
+    msgTitle="折り返しを突破";
+    msg="日常・接客・会社・ドラマの表現が、少しずつつながってきています。";
+    motivation.className="motivation motivation-achievement";
+  }else if((state.stats.streak||0)>=3){
+    msgTitle=`${state.stats.streak}日連続学習中`;
+    msg="学習が習慣になり始めています。短時間でも続けることを優先しましょう。";
+    motivation.className="motivation motivation-streak";
+  }
+  motivationTitle.textContent=msgTitle;
+  motivationMessage.textContent=msg;
+  const rec=getRecommendedDay();
+const badges=[];
+  if(completed>=1)badges.push("最初の一歩");
+  if(completed>=5)badges.push("5Day達成");
+  if(completed>=10)badges.push("折り返し突破");
+  if(completed>=20)badges.push("Day30完全制覇");
+  if((state.stats.streak||0)>=3)badges.push("3日連続");
+  if((state.stats.streak||0)>=7)badges.push("1週間継続");
+  if(accuracy!==null&&accuracy>=80)badges.push("正解率80%超");
+  $("badgeRow").innerHTML=badges.length?badges.map(b=>`<span class="badge">${b}</span>`).join(""):'<span class="muted">学習を進めると実績バッジが増えます。</span>';
+
+  const recent=history.slice(-10);
+  if(!recent.length){
+    $("accuracyChart").innerHTML='<div class="chart-empty">テストを受けると、初回正解率の推移が表示されます。</div>';
+  }else{
+    $("accuracyChart").innerHTML='<div class="chart-bars">'+recent.map((h,i)=>{
+      const a=h.total?Math.round(h.correct/h.total*100):0;
+      return `<div class="chart-col" title="${a}%"><div style="font-size:10px">${a}%</div><div class="chart-bar" style="height:${Math.max(4,a)}px"></div><div class="chart-label">${i+1}</div></div>`;
+    }).join("")+'</div><div class="muted" style="margin-top:7px">直近10回。横軸はテスト順、縦軸は初回正解率です。</div>';
+  }
+}
 function renderApp(){
+  renderDashboard();
+  renderTodaySelector();
   $("status").textContent=`解放済み：Day 1〜${state.unlocked} / 30`;
   $("bar").style.width=(state.unlocked/30*100)+"%";
   const grid=$("dayGrid");
@@ -164,6 +1137,7 @@ function makeQuiz(dayNumbers){
 
 function startDayTest(){
   quizDays=[state.selected];
+  quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;markActivity();
   quiz=makeQuiz(quizDays);
   questionIndex=0;
   mode="daytest";
@@ -176,6 +1150,7 @@ function startBlockTest(){
   const start=end-2;
   if(end>state.unlocked){alert("この3日分はまだ全部解放されていません。");return}
   quizDays=[start,start+1,end];
+  quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;markActivity();
   quiz=makeQuiz(quizDays);
   questionIndex=0;
   mode="blocktest";
@@ -208,6 +1183,9 @@ function answerQuestion(button){
   const all=[...document.querySelectorAll(".choice")];
   all.forEach(b=>b.disabled=true);
   const correct=selected===q.a;
+  quizAnswered++;
+  if(correct)quizFirstTryCorrect++; else quizFailed=true;
+  markActivity();
   button.classList.add(correct?"ok":"ng");
   if(!correct){
     const correctButton=all.find(b=>b.dataset.answer===q.a);
@@ -225,6 +1203,17 @@ function answerQuestion(button){
 }
 
 function finishQuiz(){
+  if(quizAnswered>0){
+    state.stats.testHistory.push({
+      date:new Date().toISOString(),
+      type:mode,
+      days:[...quizDays],
+      correct:quizFirstTryCorrect,
+      total:quizAnswered
+    });
+    state.stats.testHistory=state.stats.testHistory.slice(-50);
+  }
+  commitStudyTime();
   if(mode==="daytest"){
     state.dayDone[state.selected]=true;
     save();
@@ -249,6 +1238,7 @@ function finishQuiz(){
 }
 
 document.addEventListener("click",event=>{
+  markActivity();
   const dayButton=event.target.closest("[data-day]");
   if(dayButton){
     state.selected=Number(dayButton.dataset.day);
