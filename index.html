@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="韓国語30日">
 <meta name="theme-color" content="#5836c7">
@@ -623,6 +623,31 @@ button:not(.primary){
   .today-card,.card{padding:16px !important}
 }
 
+
+html{
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+}
+body{
+  overscroll-behavior-y:contain;
+}
+button,select,input,textarea{
+  font-size:16px !important;
+}
+button,.tab,.day,.audio,.today-select{
+  touch-action:manipulation;
+}
+*{
+  -webkit-tap-highlight-color:transparent;
+}
+.today-actions{
+  grid-template-columns:1fr !important;
+}
+.today-actions button{
+  width:100% !important;
+  min-height:56px !important;
+}
+
 </style>
 
 <style id="final-historical-theme">
@@ -841,8 +866,7 @@ button:active,.tab:active,.audio:active{
   <div class="day-preview" id="todayDayPreview"></div>
   <div class="day-list-hint">Dayを選ぶと、タイトルと代表フレーズを確認できます。</div>
   <div class="today-actions">
-    <button type="button" class="primary" id="startTodayBtn">選んだDayを開く</button>
-    <button type="button" class="tab" id="startRecommendedBtn">次のDayを開く</button>
+    <button type="button" class="primary" id="startTodayBtn">このDayを始める</button>
   </div>
 </div>
 
@@ -888,6 +912,10 @@ let activeStartedAt=Date.now();
 let lastActivityAt=Date.now();
 
 state.stats=state.stats||{totalSeconds:0,lastActive:"",streak:0,testHistory:[]};
+state.unlocked=Math.max(3,Number(state.unlocked||3));
+state.selected=Math.max(1,Math.min(Number(state.selected||1),state.unlocked));
+state.dayDone=state.dayDone||{};
+state.blockDone=state.blockDone||{};
 state.stats.totalSeconds=Number(state.stats.totalSeconds||0);
 state.stats.testHistory=Array.isArray(state.stats.testHistory)?state.stats.testHistory:[];
 state.stats.streak=Number(state.stats.streak||0);
@@ -966,35 +994,49 @@ function renderDayPreview(n){
 function renderTodaySelector(){
   const select=$("todayDaySelect");
   if(!select)return;
-  const currentValue=Number(select.value)||state.selected||1;
+
   select.innerHTML="";
+  const unlocked=Math.max(1,Number(state.unlocked||3));
+
   for(let n=1;n<=30;n++){
     const opt=document.createElement("option");
     opt.value=String(n);
-    const locked=n>state.unlocked;
-    opt.disabled=locked;
+    const locked=n>unlocked;
     const done=!!state.dayDone[n];
     const cat=getDayCategory(n);
+
+    opt.disabled=locked;
     opt.textContent=`Day ${n}｜${cat.label}｜${DAYS[n-1].title}${locked?"（未解放）":done?"（学習済み）":""}`;
     select.appendChild(opt);
   }
-  const recommended=getRecommendedDay();
-  select.value=String(currentValue<=state.unlocked?currentValue:recommended);
-  $("todayRecommendation").textContent=`次に進む：Day ${recommended}「${DAYS[recommended-1].title}」`;
-  $("todayBadge").textContent=state.dayDone[recommended]?"復習":"SELECT";
-  renderDayPreview(Number(select.value));
+
+  let selected=Number(state.selected||1);
+  if(!selected || selected>unlocked) selected=1;
+  select.value=String(selected);
+
+  const next=getRecommendedDay();
+  $("todayRecommendation").textContent=`次に進む：Day ${next}「${DAYS[next-1].title}」`;
+  $("todayBadge").textContent=state.dayDone[next]?"復習":"SELECT";
+  renderDayPreview(selected);
 }
 function openSelectedDay(dayNumber){
   const n=Number(dayNumber);
-  if(!n || n>state.unlocked){
+  const unlocked=Math.max(1,Number(state.unlocked||3));
+
+  if(!n || n<1 || n>unlocked){
     alert("このDayはまだ解放されていません。");
     return;
   }
+
   state.selected=n;
   mode="words";
   save();
   renderApp();
-  document.querySelector(".card:nth-of-type(4)")?.scrollIntoView({behavior:"smooth",block:"start"});
+
+  requestAnimationFrame(()=>{
+    const title=$("lessonTitle");
+    if(title) title.scrollIntoView({behavior:"smooth",block:"start"});
+  });
 }
 function renderDashboard(){
   const completed=Object.keys(state.dayDone||{}).filter(k=>state.dayDone[k]&&Number(k)<=30).length;
