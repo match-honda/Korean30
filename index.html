@@ -111,6 +111,16 @@ button,.tab,.day,.audio,.today-select{touch-action:manipulation}
 *{-webkit-tap-highlight-color:transparent}
 .today-actions{grid-template-columns:1fr!important}
 
+
+.tab.locked-tab,
+.tab:disabled{
+  opacity:.48 !important;
+  filter:grayscale(.55);
+  cursor:not-allowed;
+  box-shadow:none !important;
+  transform:none !important;
+}
+
 </style>
 <style id="final-historical-theme">
 :root{
@@ -616,6 +626,7 @@ function renderApp(){
   $("lessonTitle").textContent=`Day ${state.selected}　${DAYS[state.selected-1].title}`;
   $("graduation").classList.toggle("hidden",!state.blockDone[10]);
   setActiveTab(mode);
+  updateBlockTestButton();
   renderLesson();
 }
 
@@ -664,6 +675,32 @@ function makeQuiz(dayNumbers){
   return shuffle(list);
 }
 
+function getCurrentBlockDays(){
+  const end=Math.ceil(state.selected/3)*3;
+  return [end-2,end-1,end];
+}
+
+function isCurrentBlockTestUnlocked(){
+  return getCurrentBlockDays().every(n=>!!state.dayDone[n]);
+}
+
+function updateBlockTestButton(){
+  const button=document.querySelector('.tab[data-action="blocktest"]');
+  if(!button)return;
+
+  const days=getCurrentBlockDays();
+  const unlocked=isCurrentBlockTestUnlocked();
+
+  button.disabled=!unlocked;
+  button.classList.toggle("locked-tab",!unlocked);
+  button.textContent=unlocked
+    ? "3日まとめテスト"
+    : `3日まとめテスト（${days.filter(n=>state.dayDone[n]).length}/3）`;
+  button.title=unlocked
+    ? "3日分のDayテストを完了しました"
+    : `Day ${days.join("・")}のDayテスト完了後に解放されます`;
+}
+
 function startDayTest(){
   quizDays=[state.selected];
   quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;markActivity();
@@ -677,8 +714,20 @@ function startDayTest(){
 function startBlockTest(){
   const end=Math.ceil(state.selected/3)*3;
   const start=end-2;
-  if(end>state.unlocked){alert("この3日分はまだ全部解放されていません。");return}
-  quizDays=[start,start+1,end];
+  const required=[start,start+1,end];
+
+  if(end>state.unlocked){
+    alert("この3日分はまだ全部解放されていません。");
+    return;
+  }
+
+  const unfinished=required.filter(n=>!state.dayDone[n]);
+  if(unfinished.length){
+    alert(`先にDay ${unfinished.join("・")}のDayテストを全問正解してください。`);
+    return;
+  }
+
+  quizDays=required;
   quizFirstTryCorrect=0;quizAnswered=0;quizFailed=false;markActivity();
   quiz=makeQuiz(quizDays);
   questionIndex=0;
@@ -746,7 +795,18 @@ function finishQuiz(){
   if(mode==="daytest"){
     state.dayDone[state.selected]=true;
     save();
-    $("content").innerHTML='<div class="success"><b>Dayテスト全15問正解です。</b><br>3日まとめテストに挑戦してください。</div>';
+    updateBlockTestButton();
+
+    const blockDays=getCurrentBlockDays();
+    const unfinished=blockDays.filter(n=>!state.dayDone[n]);
+
+    if(unfinished.length===0){
+      $("content").innerHTML=
+        '<div class="success"><b>この3日分のDayテストをすべて完了しました。</b><br>3日まとめテストが解放されました。</div>';
+    }else{
+      $("content").innerHTML=
+        `<div class="success"><b>Day ${state.selected}テスト全15問正解です。</b><br>まとめテスト解放まで、残り：Day ${unfinished.join("・")}</div>`;
+    }
   } else {
     const end=Math.max(...quizDays);
     const block=end/3;
@@ -794,6 +854,11 @@ document.addEventListener("click",event=>{
     } else if(action==="daytest"){
       startDayTest();
     } else if(action==="blocktest"){
+      if(!isCurrentBlockTestUnlocked()){
+        const unfinished=getCurrentBlockDays().filter(n=>!state.dayDone[n]);
+        alert(`先にDay ${unfinished.join("・")}のDayテストを全問正解してください。`);
+        return;
+      }
       startBlockTest();
     }
     return;
